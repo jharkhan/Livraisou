@@ -11,16 +11,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:autofillHints=""
         android:ems="10"
         android:hint="@string/mail"
-        android:hintTextColor="#757575"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:ignore="TextContrastCheck" />
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/Password"
@@ -29,12 +27,13 @@
         android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/password"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EmailAddress"
-        tools:ignore="TouchTargetSizeCheck"
-        android:autofillHints="" />
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/LoginButton"
