@@ -8,4 +8,6 @@
     <string name="postButton">Poster</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="order">Commander</string>
+    <string name="mail">Email</string>
+    <string name="password">Mot de passe</string>
 </resources>
