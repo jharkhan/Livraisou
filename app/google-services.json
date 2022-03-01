@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "311147860537",
+    "firebase_url": "https://livraisou-default-rtdb.firebaseio.com",
+    "project_id": "livraisou",
+    "storage_bucket": "livraisou.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311147860537:android:c2e59305c2b27b812af3e8",
+        "android_client_info": {
+          "package_name": "fr.isen.corre.livraisou"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311147860537-eq2lnogv8j36fj5h4o9idsse0bo2bnqi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCT-kpGZYLAr3DRXsTw4c4X9Sxqikpr378"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "311147860537-eq2lnogv8j36fj5h4o9idsse0bo2bnqi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
