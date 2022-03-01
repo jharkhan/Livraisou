@@ -7,4 +7,5 @@
     <string name="put_content">Ecrivez votre post ici</string>
     <string name="postButton">Poster</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="order">Commander</string>
 </resources>
