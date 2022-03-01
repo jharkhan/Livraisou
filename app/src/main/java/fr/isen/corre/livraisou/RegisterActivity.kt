@@ -36,20 +36,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun listenClick() {
         binding.RegisterBtn.setOnClickListener {
-            auth.createUserWithEmailAndPassword(binding.EmailAddress.text.toString().trim(),binding.Password.text.toString().trim())
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "createUserWithEmail:success")
-                        changeActivityToMain()
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                        Log.w(binding.EmailAddress.text.toString(), task.exception)
-                        Toast.makeText(baseContext, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show()
-                    }
-                }
+            register()
         }
 
         binding.button.setOnClickListener {
@@ -67,6 +54,23 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun changeActivityToLogin() {
         startActivity(Intent(this, LoginActivity::class.java))
+    }
+
+    private fun register() {
+        auth.createUserWithEmailAndPassword(binding.EmailAddress.text.toString().trim(),binding.Password.text.toString().trim())
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "createUserWithEmail:success")
+                    changeActivityToMain()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                    Log.w(binding.EmailAddress.text.toString(), task.exception)
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
 //test@gmail.com

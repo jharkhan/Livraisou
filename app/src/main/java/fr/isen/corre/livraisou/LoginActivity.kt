@@ -36,6 +36,27 @@ class LoginActivity : AppCompatActivity() {
 
     private fun listenClick() {
         binding.LoginBtn.setOnClickListener {
+            signIn()
+        }
+        binding.button.setOnClickListener {
+            changeActivityToRegister()
+        }
+    }
+
+    private fun changeActivityToMain() {
+        startActivity(Intent(this, MainActivity::class.java))
+    }
+
+    private fun changeActivityToRegister() {
+        startActivity(Intent(this, RegisterActivity::class.java))
+    }
+
+    private fun updateUI(user: FirebaseUser?) {
+        TODO("Not yet implemented")
+    }
+
+    private fun signIn() {
+        binding.LoginBtn.setOnClickListener {
             auth.signInWithEmailAndPassword(
                 binding.EmailAddress.text.toString(),
                 binding.Password.text.toString()
@@ -57,23 +78,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
         }
-
-        binding.button.setOnClickListener {
-            changeActivityToRegister()
-        }
-
-    }
-
-    private fun changeActivityToMain() {
-        startActivity(Intent(this, MainActivity::class.java))
-    }
-
-    private fun changeActivityToRegister() {
-        startActivity(Intent(this, RegisterActivity::class.java))
-    }
-
-    private fun updateUI(user: FirebaseUser?) {
-        TODO("Not yet implemented")
     }
 
 }
