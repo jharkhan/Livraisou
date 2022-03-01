@@ -1,6 +1,5 @@
 package fr.isen.corre.livraisou
 
-import android.R
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
@@ -31,7 +30,7 @@ class MapsActivity : FragmentActivity(), OnMapReadyCallback {
 
         // Obtain the SupportMapFragment and get
         // notified when the map is ready to be used.
-        val mapFragment = binding.map
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment!!.getMapAsync(this)
     }
 
