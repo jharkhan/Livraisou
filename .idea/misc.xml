@@ -4,12 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_account.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_footer.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_maps.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_register.xml" value="0.33" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/cell_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/menu/nav_menu.xml" value="0.20572916666666666" />
       </map>
     </option>
   </component>
