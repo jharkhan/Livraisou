@@ -35,11 +35,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun listenClick() {
-        binding.LoginBtn.setOnClickListener {
+        binding.LoginButton.setOnClickListener {
             signIn()
-        }
-        binding.button.setOnClickListener {
-            changeActivityToRegister()
         }
     }
 
@@ -56,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun signIn() {
-        binding.LoginBtn.setOnClickListener {
+        binding.LoginButton.setOnClickListener {
             auth.signInWithEmailAndPassword(
                 binding.EmailAddress.text.toString(),
                 binding.Password.text.toString()

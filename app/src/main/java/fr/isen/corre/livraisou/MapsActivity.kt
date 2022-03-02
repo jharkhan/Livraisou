@@ -1,5 +1,6 @@
 package fr.isen.corre.livraisou
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
@@ -9,11 +10,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.GeoPoint
-import fr.isen.corre.livraisou.databinding.ActivityLoginBinding
 import fr.isen.corre.livraisou.databinding.ActivityMapsBinding
 
 class MapsActivity : FragmentActivity(), OnMapReadyCallback {
@@ -45,7 +42,7 @@ class MapsActivity : FragmentActivity(), OnMapReadyCallback {
             if (value != null && value.exists()) {
                 // below line is to create a geo point and we are getting
                 // geo point from firebase and setting to it.
-                val geoPoint = value.getGeoPoint("geoPoint")
+                val geoPoint = value.getGeoPoint("casino")
 
                 // getting latitude and longitude from geo point
                 // and setting it to our location.

@@ -35,12 +35,8 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun listenClick() {
-        binding.RegisterBtn.setOnClickListener {
+        binding.RegisterButton.setOnClickListener {
             register()
-        }
-
-        binding.button.setOnClickListener {
-            changeActivityToLogin()
         }
     }
 
