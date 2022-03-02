@@ -8,10 +8,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import fr.isen.corre.livraisou.MainActivity
-import fr.isen.corre.livraisou.RegisterActivity
 import fr.isen.corre.livraisou.databinding.ActivityLoginBinding
 
 
@@ -22,7 +19,6 @@ class LoginActivity : AppCompatActivity() {
     val TAG = "RegisterActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val database = Firebase.database
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
@@ -37,6 +33,10 @@ class LoginActivity : AppCompatActivity() {
     private fun listenClick() {
         binding.LoginButton.setOnClickListener {
             signIn()
+        }
+
+        binding.button.setOnClickListener {
+            changeActivityToRegister()
         }
     }
 
