@@ -34,6 +34,10 @@ class RegisterActivity : AppCompatActivity() {
         binding.RegisterButton.setOnClickListener {
             register()
         }
+
+        binding.button.setOnClickListener {
+            changeActivityToLogin()
+        }
     }
 
     private fun updateUI(user: FirebaseUser?) {

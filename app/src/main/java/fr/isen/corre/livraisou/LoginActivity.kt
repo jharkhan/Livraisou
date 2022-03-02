@@ -34,6 +34,10 @@ class LoginActivity : AppCompatActivity() {
         binding.LoginButton.setOnClickListener {
             signIn()
         }
+
+        binding.button.setOnClickListener {
+            changeActivityToRegister()
+        }
     }
 
     private fun changeActivityToMain() {
