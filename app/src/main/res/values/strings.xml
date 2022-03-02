@@ -9,4 +9,9 @@
     <string name="redirect_register">Vous n\'avez pas de compte ?</string>
     <string name="redirect_login">Vous avez déjà un compte ?</string>
     <string name="btn_redirect"><u>cliquez ici</u></string>
+    <string name="btn_signOut"><u>Deconnexion</u></string>
+    <string name="btn_update"><u>Mettre a jour</u></string>
+    <string name="full_name">Nom Complet</string>
+    <string name="phone_number">Numero de Télephone</string>
+    <string name="location">Addresse</string>
 </resources>
