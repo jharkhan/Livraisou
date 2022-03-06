@@ -8,4 +8,7 @@
     <string name="password">Mot de passe</string>
     <string name="redirect_register">Vous n\'avez pas de compte ? Cliquez ici</string>
     <string name="redirect_login">Vous avez déjà un compte ? Cliquez ici</string>
+    <string name="last_name">Nom</string>
+    <string name="first_name">Prénom</string>
+    <string name="phone_number">Numéro de téléphone</string>
 </resources>
