@@ -8,10 +8,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import fr.isen.corre.livraisou.MainActivity
-import fr.isen.corre.livraisou.RegisterActivity
 import fr.isen.corre.livraisou.databinding.ActivityLoginBinding
 
 
@@ -22,7 +19,6 @@ class LoginActivity : AppCompatActivity() {
     val TAG = "RegisterActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val database = Firebase.database
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
@@ -38,10 +34,14 @@ class LoginActivity : AppCompatActivity() {
         binding.LoginButton.setOnClickListener {
             signIn()
         }
+
+        binding.button.setOnClickListener {
+            changeActivityToRegister()
+        }
     }
 
-    private fun changeActivityToMain() {
-        startActivity(Intent(this, MainActivity::class.java))
+    private fun changeActivityToMaps() {
+        startActivity(Intent(this, MapsActivity::class.java))
     }
 
     private fun changeActivityToRegister() {
@@ -63,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithEmail:success")
                         val user = auth.currentUser
-                        changeActivityToMain()
+                        changeActivityToMaps()
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmail:failure", task.exception)
