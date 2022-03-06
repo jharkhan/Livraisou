@@ -31,9 +31,6 @@
             android:name=".PastOrdersActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".ProductsActivity"
             android:exported="false" />
         <activity
