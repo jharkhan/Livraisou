@@ -16,7 +16,7 @@ import fr.isen.corre.livraisou.databinding.ActivityLoginBinding
 class LoginActivity : AppCompatActivity() {
     private  lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
-    val TAG = "RegisterActivity"
+    val TAG = "LoginActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
