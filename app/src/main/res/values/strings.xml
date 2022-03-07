@@ -6,7 +6,15 @@
     <string name="order">Commander</string>
     <string name="mail">Adresse e-mail</string>
     <string name="password">Mot de passe</string>
-    <string name="redirect_register">Vous n\'avez pas de compte ?</string>
-    <string name="redirect_login">Vous avez déjà un compte ?</string>
+    <string name="redirect_register">Vous n\'avez pas de compte ? <u>Cliquez ici</u></string>
+    <string name="redirect_login">Vous avez déjà un compte ? <u>Cliquez ici</u></string>
+    <string name="last_name">Nom</string>
+    <string name="first_name">Prénom</string>
+    <string name="phone_number">Numéro de téléphone</string>
     <string name="btn_redirect"><u>cliquez ici</u></string>
+    <string name="order_final">Merci pour votre commande. \n Celle-ci est en cours de préparation</string>
+    <string name="main_menu">Accueil</string>
+    <string name="account">Compte</string>
+    <string name="past_orders"><u>Historique des commandes</u></string>
+    <string name="add">Ajouter au panier</string>
 </resources>

@@ -40,8 +40,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun changeActivityToMain() {
-        startActivity(Intent(this, MainActivity::class.java))
+    private fun changeActivityToMaps() {
+        startActivity(Intent(this, MapsActivity::class.java))
     }
 
     private fun changeActivityToRegister() {
@@ -63,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithEmail:success")
                         val user = auth.currentUser
-                        changeActivityToMain()
+                        changeActivityToMaps()
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmail:failure", task.exception)
