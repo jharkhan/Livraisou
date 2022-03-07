@@ -51,14 +51,15 @@
             app:layout_constraintTop_toBottomOf="@+id/cellShopName" />
 
         <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="76dp"
-            android:layout_height="76dp"
-            android:layout_marginEnd="8dp"
+            android:id="@+id/imageView3"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/pin" />
+            app:srcCompat="@android:drawable/ic_dialog_map"
+            app:tint="#191818" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
