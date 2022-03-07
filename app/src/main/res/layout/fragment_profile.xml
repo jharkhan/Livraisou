@@ -42,37 +42,15 @@
         app:layout_constraintTop_toBottomOf="@+id/lastNameA" />
 
     <TextView
-        android:id="@+id/phoneNumberA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/phone_number"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstNameA" />
-
-    <TextView
-        android:id="@+id/emailA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/mail"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumberA" />
-
-    <TextView
         android:id="@+id/addressA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:text="Adresse"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailA" />
+        app:layout_constraintTop_toBottomOf="@+id/firstNameA" />
 
     <TextView
         android:id="@+id/pastOrdersRedirect"
