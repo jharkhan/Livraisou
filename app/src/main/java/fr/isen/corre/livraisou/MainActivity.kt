@@ -18,7 +18,10 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+        navigation()
+    }
 
+    private fun navigation() {
         val bottomNav = findViewById<NavigationBarView>(R.id.bottom_nav)
         bottomNav.setOnItemSelectedListener {
 

@@ -140,4 +140,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/firstNameA"
+        app:layout_constraintStart_toEndOf="@+id/lastNameA"
+        app:layout_constraintTop_toBottomOf="@+id/titleAccount" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/phoneNumberA"
+        app:layout_constraintStart_toEndOf="@+id/firstNameA"
+ />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/emailA"
+        app:layout_constraintStart_toEndOf="@+id/phoneNumberA"
+        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
