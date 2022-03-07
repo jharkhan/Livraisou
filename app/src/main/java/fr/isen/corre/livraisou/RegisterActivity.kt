@@ -29,7 +29,7 @@ class RegisterActivity : AppCompatActivity() {
 
 
     private fun reload() {
-
+        TODO("Not yet implemented")
     }
 
     private fun listenClick() {
