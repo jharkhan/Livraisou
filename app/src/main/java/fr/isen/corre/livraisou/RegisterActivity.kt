@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import fr.isen.corre.livraisou.databinding.ActivityRegisterBinding
 
@@ -21,6 +22,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
+
         listenClick()
 
     }
@@ -31,12 +33,16 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun listenClick() {
-        binding.RegisterButton.setOnClickListener {
+        binding.buttonRegister.setOnClickListener {
             register()
         }
 
-        binding.button.setOnClickListener {
+        binding.redirectLogin.setOnClickListener {
             changeActivityToLogin()
+        }
+
+        binding.btnWithoutAuth.setOnClickListener {
+            changeActivityToMain()
         }
     }
 
@@ -53,16 +59,19 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun register() {
-        auth.createUserWithEmailAndPassword(binding.EmailAddress.text.toString().trim(),binding.Password.text.toString().trim())
+        auth.createUserWithEmailAndPassword(binding.emailAddress.text.toString().trim(),binding.password.text.toString().trim())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success")
+                    val database = Firebase.database
+                    val userRef = database.getReference("user")
+                    userRef.setValue(User("ehe", "oho", "ihi"))
                     changeActivityToMain()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Log.w(binding.EmailAddress.text.toString(), task.exception)
+                    Log.w(binding.emailAddress.text.toString(), task.exception)
                     Toast.makeText(baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
                 }
