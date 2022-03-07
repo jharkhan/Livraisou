@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        val bottomNav = findViewById<NavigationBarView>(R.id.bottom)
+        val bottomNav = findViewById<NavigationBarView>(R.id.bottom_nav)
         bottomNav.setOnItemSelectedListener {
 
             when(it.itemId)
