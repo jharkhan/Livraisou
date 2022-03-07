@@ -49,8 +49,8 @@ class ProfileFragment : Fragment() {
     }
 
     private fun changeActivityToLogin() {
-            val intent = Intent (activity, LoginActivity::class.java)
-            startActivity(intent)
+        val intent = Intent (activity, LoginActivity::class.java)
+        startActivity(intent)
     }
     private fun changeActivityToAccount() {
         val intent = Intent (activity, AccountActivity::class.java)
