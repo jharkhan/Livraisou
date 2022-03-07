@@ -21,7 +21,7 @@
         tools:fontFamily="cursive" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/commander"
         android:layout_width="341dp"
         android:layout_height="98dp"
         android:text="@string/order"
