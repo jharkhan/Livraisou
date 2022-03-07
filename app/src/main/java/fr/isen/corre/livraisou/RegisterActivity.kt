@@ -28,9 +28,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
 
-    private fun reload() {
-        TODO("Not yet implemented")
-    }
 
     private fun listenClick() {
         binding.buttonRegister.setOnClickListener {
@@ -44,10 +41,6 @@ class RegisterActivity : AppCompatActivity() {
         binding.btnWithoutAuth.setOnClickListener {
             changeActivityToMain()
         }
-    }
-
-    private fun updateUI(user: FirebaseUser?) {
-        TODO("Not yet implemented")
     }
 
     private fun changeActivityToMain() {
