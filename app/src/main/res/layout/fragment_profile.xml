@@ -96,7 +96,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/login"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_update" />
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdate" />
 
     <Button
         android:id="@+id/btnRegister"
@@ -108,7 +108,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/btnLogin"
-        app:layout_constraintTop_toBottomOf="@+id/btn_update" />
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdate" />
 
     <Button
         android:id="@+id/btnMap"
@@ -118,10 +118,10 @@
         android:text="go to map"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_logOut" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLogout" />
 
     <Button
-        android:id="@+id/btn_update"
+        android:id="@+id/btnUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -131,7 +131,7 @@
         app:layout_constraintTop_toBottomOf="@+id/pastOrdersRedirect" />
 
     <Button
-        android:id="@+id/btn_logOut"
+        android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
