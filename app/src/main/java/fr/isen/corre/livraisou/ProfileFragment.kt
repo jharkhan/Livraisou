@@ -6,9 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import fr.isen.corre.livraisou.databinding.ActivityLoginBinding
 import fr.isen.corre.livraisou.databinding.FragmentProfileBinding
-import kotlinx.coroutines.Dispatchers.Main
+
 
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,7 +50,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun changeActivityToLogin() {
-            val intent = Intent (activity, MainActivity::class.java)
+            val intent = Intent (activity, LoginActivity::class.java)
             startActivity(intent)
     }
 
