@@ -40,12 +40,12 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.buttonM.setOnClickListener {
-            //changeActivity(MainActivity)
+            changeActivity()
         }
     }
 
-    private fun changeActivity(activity:Intent) {
-        startActivity(Intent(this, activity::class.java))
+    private fun changeActivity() {
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
     private fun changeActivityToRegister() {
