@@ -37,7 +37,7 @@ class RegisterActivity : AppCompatActivity() {
             register()
         }
 
-        binding.button.setOnClickListener {
+        binding.redirectLogin.setOnClickListener {
             changeActivityToLogin()
         }
 

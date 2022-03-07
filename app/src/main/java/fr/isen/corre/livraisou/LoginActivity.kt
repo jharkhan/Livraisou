@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
             signIn()
         }
 
-        binding.button.setOnClickListener {
+        binding.redirectRegister.setOnClickListener {
             changeActivityToRegister()
         }
 
