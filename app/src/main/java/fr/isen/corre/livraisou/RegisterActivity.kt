@@ -65,11 +65,11 @@ class RegisterActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success")
                     val database = Firebase.database
-                    val userRef = database.getReference("user")
                     val user = Firebase.auth.currentUser
                     user?.let {
                         val uid = user.uid
-                        userRef.setValue(User(binding.firstName.text.toString(), binding.lastName.text.toString(), binding.phoneNumber.text.toString(), uid))
+                        val userRef = database.getReference(uid)
+                        userRef.setValue(User(binding.firstName.text.toString(), binding.lastName.text.toString(), binding.phoneNumber.text.toString()))
                     }
                     changeActivityToMain()
                 } else {

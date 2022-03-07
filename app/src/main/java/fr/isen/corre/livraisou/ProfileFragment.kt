@@ -29,21 +29,23 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //setUserInformation()
         val database = Firebase.database
-        val userRef = database.getReference("user")
+
         val user = Firebase.auth.currentUser
         user?.let {
             val uid = user.uid
+            val userRef = database.getReference(uid)
             // Read from the database
             userRef.addValueEventListener(object: ValueEventListener {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
-                    val value = snapshot.getValue<User>()
-                    //binding.editName.text = value.name.toString()
-
-
+                    val dataUser = snapshot.getValue<User>()
+                    if (dataUser != null) {
+                        setUserInformation(dataUser)
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -89,7 +91,10 @@ class ProfileFragment : Fragment() {
         val intent = Intent (activity, PastOrdersActivity::class.java)
         startActivity(intent)
     }
-    private fun setUserInformation() {
+    private fun setUserInformation(user: User) {
+        binding.editName.setText(user.name)
+       // binding.editsurname.setText(user.surname)
+       // binding.editName.setText(user.name)
 
     }
 }

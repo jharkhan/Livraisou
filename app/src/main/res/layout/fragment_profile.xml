@@ -137,7 +137,7 @@
         android:layout_marginStart="16dp"
         app:layout_constraintBottom_toTopOf="@+id/phoneNumberA"
         app:layout_constraintStart_toEndOf="@+id/firstNameA"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+ />
 
     <EditText
         android:id="@+id/editText4"
