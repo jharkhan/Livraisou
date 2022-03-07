@@ -38,6 +38,10 @@ class RegisterActivity : AppCompatActivity() {
         binding.button.setOnClickListener {
             changeActivityToLogin()
         }
+
+        binding.btnWithoutAuth.setOnClickListener {
+            changeActivityToMain()
+        }
     }
 
     private fun updateUI(user: FirebaseUser?) {

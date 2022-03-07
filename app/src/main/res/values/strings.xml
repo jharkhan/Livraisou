@@ -9,4 +9,6 @@
     <string name="redirect_register">Vous n\'avez pas de compte ?</string>
     <string name="redirect_login">Vous avez déjà un compte ?</string>
     <string name="btn_redirect"><u>cliquez ici</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

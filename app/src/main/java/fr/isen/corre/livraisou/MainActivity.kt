@@ -2,26 +2,62 @@ package fr.isen.corre.livraisou
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import fr.isen.corre.livraisou.databinding.ActivityMainBinding
-import android.content.Intent
+import android.util.Log
+import androidx.fragment.app.add
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
+import com.google.android.material.navigation.NavigationBarView
 
 
 class MainActivity : AppCompatActivity() {
-    private  lateinit var binding: ActivityMainBinding
-    val TAG = "MainActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
+        if (savedInstanceState == null) {
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                replace<ShopListFragment>(R.id.container)
+            }
+
+        }
+
+        val bottomNav = findViewById<NavigationBarView>(R.id.bottom)
+        bottomNav.setOnItemSelectedListener {
+
+            when(it.itemId)
+            {
+                R.id.home -> supportFragmentManager.commit {
+                    setReorderingAllowed(true)
+                    replace<ShopListFragment>(R.id.container)
+                }
+
+                R.id.account -> supportFragmentManager.commit {
+                    setReorderingAllowed(true)
+                    replace<ProfileFragment>(R.id.container)
+                }
+
+                R.id.search -> supportFragmentManager.commit {
+                    setReorderingAllowed(true)
+                    replace<MapsFragment>(R.id.container)
+                }
+
+
+            }
+            true
+        }
+
 
     }
 
 
 
-    private fun changeActivityToAccount() {
-        startActivity(Intent(this, AccountActivity::class.java))
-    }
+
+
+
+
 }
+
+
 
 
 
