@@ -42,23 +42,34 @@ class MapsActivity : FragmentActivity(), OnMapReadyCallback {
             if (value != null && value.exists()) {
                 // below line is to create a geo point and we are getting
                 // geo point from firebase and setting to it.
-                val geoPoint = value.getGeoPoint("casino")
+                val geoPoint1 = value.getGeoPoint("casino")
+                val geoPoint2 = value.getGeoPoint("carrefour")
+                val geoPoint3 = value.getGeoPoint("monoprix")
 
                 // getting latitude and longitude from geo point
                 // and setting it to our location.
-                val location = LatLng(
-                    geoPoint!!.latitude, geoPoint.longitude
+                val location1 = LatLng(
+                    geoPoint1!!.latitude, geoPoint1.longitude
+                )
+                val location2 = LatLng(
+                    geoPoint2!!.latitude, geoPoint2.longitude
+                )
+                val location3 = LatLng(
+                    geoPoint3!!.latitude, geoPoint3.longitude
                 )
 
                 // adding marker to each location on google maps
-                mMap!!.addMarker(MarkerOptions().position(location).title("Marker"))
+                mMap!!.addMarker(MarkerOptions().position(location1).title("Marker"))
 
                 // below line is use to move camera.
-                mMap!!.moveCamera(CameraUpdateFactory.newLatLng(location))
+                mMap!!.moveCamera(CameraUpdateFactory.newLatLng(location1))
+                mMap!!.addMarker(MarkerOptions().position(location2).title("Marker"))
+                mMap!!.addMarker(MarkerOptions().position(location3).title("Marker"))
             } else {
                 Toast.makeText(this@MapsActivity, "Error found is $error", Toast.LENGTH_SHORT)
                     .show()
             }
+
         }
     }
 }
