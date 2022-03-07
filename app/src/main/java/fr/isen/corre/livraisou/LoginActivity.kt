@@ -31,20 +31,20 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun listenClick() {
-        binding.LoginButton.setOnClickListener {
+        binding.buttonLogin.setOnClickListener {
             signIn()
         }
 
-        binding.button.setOnClickListener {
-           // changeActivity()
+        binding.redirectRegister.setOnClickListener {
+            changeActivityToRegister()
         }
 
-        binding.buttonM.setOnClickListener {
-            changeActivity()
+        binding.btnWithoutAuth.setOnClickListener {
+            changeActivityToMain()
         }
     }
 
-    private fun changeActivity() {
+    private fun changeActivityToMain() {
         startActivity(Intent(this, MainActivity::class.java))
     }
 
@@ -52,26 +52,23 @@ class LoginActivity : AppCompatActivity() {
         startActivity(Intent(this, RegisterActivity::class.java))
     }
 
-    private fun changeActivityToM() {
-        startActivity(Intent(this, MainActivity::class.java))
-    }
 
     private fun updateUI(user: FirebaseUser?) {
         TODO("Not yet implemented")
     }
 
     private fun signIn() {
-        binding.LoginButton.setOnClickListener {
+        binding.buttonLogin.setOnClickListener {
             auth.signInWithEmailAndPassword(
-                binding.EmailAddress.text.toString(),
-                binding.Password.text.toString()
+                binding.emailAddress.text.toString(),
+                binding.password.text.toString()
             )
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithEmail:success")
                         val user = auth.currentUser
-                        //changeActivityToMaps()
+                        changeActivityToMain()
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmail:failure", task.exception)
