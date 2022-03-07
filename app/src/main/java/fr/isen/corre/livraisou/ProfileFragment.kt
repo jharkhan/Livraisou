@@ -47,19 +47,26 @@ class ProfileFragment : Fragment() {
         binding.btnMap.setOnClickListener {
             changeActivityToMap()
         }
+
+        binding.pastOrdersRedirect.setOnClickListener {
+            changeActivityToPastOrders()
+        }
     }
 
     private fun changeActivityToLogin() {
             val intent = Intent (activity, LoginActivity::class.java)
             startActivity(intent)
     }
-
     private fun changeActivityToRegister() {
         val intent = Intent (activity, RegisterActivity::class.java)
         startActivity(intent)
     }
     private fun changeActivityToMap() {
         val intent = Intent (activity, MapsActivity::class.java)
+        startActivity(intent)
+    }
+    private fun changeActivityToPastOrders() {
+        val intent = Intent (activity, PastOrdersActivity::class.java)
         startActivity(intent)
     }
 }

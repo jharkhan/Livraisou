@@ -15,7 +15,8 @@
     <string name="order_final">Merci pour votre commande. \n Celle-ci est en cours de préparation</string>
     <string name="main_menu">Accueil</string>
     <string name="account">Compte</string>
-    <string name="past_orders"><u>Historique des commandes</u></string>
+    <string name="past_orders">Historique des commandes</string>
+    <string name="past_orders_u"><u>Historique des commandes</u></string>
     <string name="add">Ajouter au panier</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string><string name="post_a_status">Poster un status</string>
