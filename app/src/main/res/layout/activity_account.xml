@@ -24,13 +24,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/last_name"
+        app:startIconDrawable="@drawable/ic_profil"
         app:layout_constraintTop_toBottomOf="@+id/profilPic"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/fullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="last name"
+            android:text="Enter last name"
             android:visibility="visible" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -38,13 +39,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/first_name"
+        app:startIconDrawable="@drawable/ic_profil"
         app:layout_constraintTop_toBottomOf="@+id/edittext_lastname"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/firstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="first name"
+            android:text="Enter first name"
             android:visibility="visible" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -52,15 +54,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/phone_number"
-        android:layout_marginBottom="50dp"
         app:layout_constraintTop_toBottomOf="@+id/edittext_firstname"
-        tools:layout_editor_absoluteX="1dp"
+        app:startIconDrawable="@drawable/ic_phone"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="phone number"  />
+            android:text="Enter phone number"  />
 
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -68,15 +69,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/mail"
-        android:layout_marginBottom="50dp"
         app:layout_constraintTop_toBottomOf="@+id/edittext_phonenumber"
-        tools:layout_editor_absoluteX="1dp"
+        app:startIconDrawable="@drawable/ic_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="email"  />
+            android:text="Enter email"  />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -84,17 +84,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
-        android:layout_marginBottom="50dp"
         app:layout_constraintTop_toBottomOf="@+id/edittext_mail"
+        app:startIconDrawable="@drawable/ic_profil"
         app:endIconMode="password_toggle"
-        tools:layout_editor_absoluteX="1dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:text="password"  />
+            android:text="Enter password"  />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -102,9 +101,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/location"
-        android:layout_marginBottom="50dp"
         app:layout_constraintTop_toBottomOf="@+id/edittext_password"
-        tools:layout_editor_absoluteX="1dp"
+        app:startIconDrawable="@drawable/ic_location"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
