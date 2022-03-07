@@ -14,7 +14,7 @@
     <string name="btn_redirect"><u>cliquez ici</u></string>
     <string name="btn_historic"><u>Historique des Recherches</u></string>
     <string name="btn_update"><u>Mettre a jour</u></string>
-    <string name="btn_logOut"><u>Deconnexion</u></string>
+    <string name="btn_logOut">Deconnexion</string>
     <string name="order_final">Merci pour votre commande. \n Celle-ci est en cours de préparation</string>
     <string name="main_menu">Accueil</string>
     <string name="location">Adresse</string>
