@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import fr.isen.corre.livraisou.databinding.ActivityRegisterBinding
 
@@ -21,6 +22,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
+
         listenClick()
 
     }
@@ -35,7 +37,7 @@ class RegisterActivity : AppCompatActivity() {
             register()
         }
 
-        binding.button.setOnClickListener {
+        binding.redirectLogin.setOnClickListener {
             changeActivityToLogin()
         }
 
@@ -62,6 +64,9 @@ class RegisterActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success")
+                    val database = Firebase.database
+                    val userRef = database.getReference("user")
+                    userRef.setValue(User("ehe", "oho", "ihi"))
                     changeActivityToMain()
                 } else {
                     // If sign in fails, display a message to the user.
