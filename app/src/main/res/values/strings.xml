@@ -11,6 +11,7 @@
     <string name="btn_redirect"><u>cliquez ici</u></string>
     <string name="btn_signOut"><u>Deconnexion</u></string>
     <string name="btn_update"><u>Mettre a jour</u></string>
+    <string name="btn_historic"><u>Historique de commande</u></string>
     <string name="full_name">Nom Complet</string>
     <string name="phone_number">Numero de Télephone</string>
     <string name="location">Addresse</string>
