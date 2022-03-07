@@ -38,15 +38,20 @@ class LoginActivity : AppCompatActivity() {
         binding.button.setOnClickListener {
             changeActivityToRegister()
         }
+
+        binding.btnWithoutAuth.setOnClickListener {
+            changeActivityToMain()
+        }
     }
 
-    private fun changeActivityToMaps() {
-        startActivity(Intent(this, MapsActivity::class.java))
+    private fun changeActivityToMain() {
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
     private fun changeActivityToRegister() {
         startActivity(Intent(this, RegisterActivity::class.java))
     }
+
 
     private fun updateUI(user: FirebaseUser?) {
         TODO("Not yet implemented")
@@ -63,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithEmail:success")
                         val user = auth.currentUser
-                        changeActivityToMaps()
+                        changeActivityToMain()
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmail:failure", task.exception)
