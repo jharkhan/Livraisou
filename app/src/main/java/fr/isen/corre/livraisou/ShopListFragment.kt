@@ -8,10 +8,6 @@ import android.view.ViewGroup
 import fr.isen.corre.livraisou.databinding.FragmentProfileBinding
 import fr.isen.corre.livraisou.databinding.FragmentShopListBinding
 
-
-
-
-
 class ShopListFragment : Fragment() {
     private  lateinit var binding: FragmentShopListBinding
     override fun onCreateView(
