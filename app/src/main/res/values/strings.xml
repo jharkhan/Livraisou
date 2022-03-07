@@ -16,4 +16,5 @@
     <string name="main_menu">Accueil</string>
     <string name="account">Compte</string>
     <string name="past_orders"><u>Historique des commandes</u></string>
+    <string name="add">Ajouter au panier</string>
 </resources>
