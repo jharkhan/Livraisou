@@ -28,6 +28,12 @@ class ProfileFragment : Fragment() {
         binding.btnLogin.setOnClickListener {
             changeActivityToLogin()
         }
+        binding.btnUpdate.setOnClickListener {
+            changeActivityToAccount()
+        }
+        binding.btnLogout.setOnClickListener {
+            changeActivityToLogout()
+        }
 
         binding.btnRegister.setOnClickListener {
             changeActivityToRegister()
@@ -45,6 +51,13 @@ class ProfileFragment : Fragment() {
     private fun changeActivityToLogin() {
             val intent = Intent (activity, LoginActivity::class.java)
             startActivity(intent)
+    }
+    private fun changeActivityToAccount() {
+        val intent = Intent (activity, AccountActivity::class.java)
+        startActivity(intent)
+    }
+    private fun changeActivityToLogout() {
+
     }
     private fun changeActivityToRegister() {
         val intent = Intent (activity, RegisterActivity::class.java)
