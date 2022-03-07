@@ -8,17 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import fr.isen.corre.livraisou.databinding.FragmentProfileBinding
 
-
-
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileFragment : Fragment() {
     private  lateinit var binding: FragmentProfileBinding
 
@@ -39,6 +28,12 @@ class ProfileFragment : Fragment() {
         binding.btnLogin.setOnClickListener {
             changeActivityToLogin()
         }
+        binding.btnUpdate.setOnClickListener {
+            changeActivityToAccount()
+        }
+        binding.btnLogout.setOnClickListener {
+            changeActivityToLogout()
+        }
 
         binding.btnRegister.setOnClickListener {
             changeActivityToRegister()
@@ -47,13 +42,23 @@ class ProfileFragment : Fragment() {
         binding.btnMap.setOnClickListener {
             changeActivityToMap()
         }
+
+        binding.pastOrdersRedirect.setOnClickListener {
+            changeActivityToPastOrders()
+        }
     }
 
     private fun changeActivityToLogin() {
             val intent = Intent (activity, LoginActivity::class.java)
             startActivity(intent)
     }
+    private fun changeActivityToAccount() {
+        val intent = Intent (activity, AccountActivity::class.java)
+        startActivity(intent)
+    }
+    private fun changeActivityToLogout() {
 
+    }
     private fun changeActivityToRegister() {
         val intent = Intent (activity, RegisterActivity::class.java)
         startActivity(intent)
@@ -61,5 +66,12 @@ class ProfileFragment : Fragment() {
     private fun changeActivityToMap() {
         val intent = Intent (activity, MapsActivity::class.java)
         startActivity(intent)
+    }
+    private fun changeActivityToPastOrders() {
+        val intent = Intent (activity, PastOrdersActivity::class.java)
+        startActivity(intent)
+    }
+    private fun setUserInformation() {
+
     }
 }

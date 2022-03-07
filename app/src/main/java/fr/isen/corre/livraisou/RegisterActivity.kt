@@ -66,7 +66,7 @@ class RegisterActivity : AppCompatActivity() {
                     Log.d(TAG, "createUserWithEmail:success")
                     val database = Firebase.database
                     val userRef = database.getReference("user")
-                    userRef.setValue(User("ehe", "oho", "ihi"))
+                    userRef.setValue(User(binding.firstName.text.toString(),binding.lastName.text.toString(), binding.phoneNumber.text.toString()))
                     changeActivityToMain()
                 } else {
                     // If sign in fails, display a message to the user.
