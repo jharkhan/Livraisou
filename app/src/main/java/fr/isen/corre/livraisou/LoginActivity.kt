@@ -22,6 +22,9 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
+        val user = Firebase.auth.currentUser
+        if (user != null)
+            changeActivityToMain()
         listenClick()
     }
 
@@ -53,9 +56,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-    private fun updateUI(user: FirebaseUser?) {
-        TODO("Not yet implemented")
-    }
 
     private fun signIn() {
         binding.buttonLogin.setOnClickListener {
