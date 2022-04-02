@@ -6,6 +6,8 @@
     <string name="order">Commander</string>
     <string name="mail">Adresse e-mail</string>
     <string name="password">Mot de passe</string>
+    <string name="new_password">Nouveau Mot de passe</string>
+    <string name="verif_password">Verification Mot de passe</string>
     <string name="redirect_register">Vous n\'avez pas de compte ? <u>Cliquez ici</u></string>
     <string name="redirect_login">Vous avez déjà un compte ? <u>Cliquez ici</u></string>
     <string name="forgotten_password"> <u>Mot de passe oublié?</u></string>

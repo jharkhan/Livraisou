@@ -5,5 +5,6 @@ data class User(
     val surname: String = "",
     val phoneNum: String = "",
     val id: String = "",
+    val profilPicURL: String ="",
     val location: String
 )

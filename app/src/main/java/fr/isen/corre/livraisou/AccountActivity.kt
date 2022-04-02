@@ -11,8 +11,8 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -71,21 +71,44 @@ class AccountActivity : AppCompatActivity() {
 
 
         val user = Firebase.auth.currentUser
-        val newPassword = "SOME-SECURE-PASSWORD"
-        val emailAddress = "user@example.com"
-        user?.let {
-            // Name, email address, and profile photo Url
-            val name = user.displayName
-            val email = user.email
-            val photoUrl = user.photoUrl
+        val database = Firebase.database
 
+        user?.let {
+
+            //val photoUrl = user.photoUrl
             // Check if user's email is verified
             val emailVerified = user.isEmailVerified
-
             // The user's ID, unique to the Firebase project. Do NOT use this value to
             // authenticate with your backend server, if you have one. Use
             // FirebaseUser.getToken() instead.
             val uid = user.uid
+            val userRef = database.getReference(uid)
+            // Read from the database
+            userRef.addValueEventListener(object: ValueEventListener {
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    val firstName = snapshot.child("surname").value
+                    val lastName = snapshot.child("name").value
+                    val phoneNumber = snapshot.child("phoneNum").value
+                    //val photoURL= snapshot.child("profilPicURL").value
+                    val location = snapshot.child("location").value
+
+                    binding.userFirstName.setText(firstName.toString())
+                    binding.userFullName.setText(lastName.toString())
+                    binding.userPhoneNumber.setText(phoneNumber.toString())
+                   // binding.profilPic.setImageDrawable(photoURL.toString())
+                    binding.userLocation.setText(location.toString())
+                    binding.userEmail.setText(it.email.toString())
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.w(TAG, "Failed to read value.", error.toException())
+                }
+
+            })
+
         }
 
         if (user != null) {
