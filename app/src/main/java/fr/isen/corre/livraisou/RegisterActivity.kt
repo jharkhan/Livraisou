@@ -28,9 +28,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
 
-    private fun reload() {
-        TODO("Not yet implemented")
-    }
 
     private fun listenClick() {
         binding.buttonRegister.setOnClickListener {
@@ -44,10 +41,6 @@ class RegisterActivity : AppCompatActivity() {
         binding.btnWithoutAuth.setOnClickListener {
             changeActivityToMain()
         }
-    }
-
-    private fun updateUI(user: FirebaseUser?) {
-        TODO("Not yet implemented")
     }
 
     private fun changeActivityToMain() {
@@ -65,8 +58,12 @@ class RegisterActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success")
                     val database = Firebase.database
-                    val userRef = database.getReference("user")
-                    userRef.setValue(User(binding.firstName.text.toString(),binding.lastName.text.toString(), binding.phoneNumber.text.toString()))
+                    val user = Firebase.auth.currentUser
+                    user?.let {
+                        val uid = user.uid
+                        val userRef = database.getReference(uid)
+                        userRef.setValue(User(binding.firstName.text.toString(), binding.lastName.text.toString(), binding.phoneNumber.text.toString()))
+                    }
                     changeActivityToMain()
                 } else {
                     // If sign in fails, display a message to the user.

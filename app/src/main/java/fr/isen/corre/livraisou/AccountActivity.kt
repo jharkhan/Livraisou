@@ -24,10 +24,10 @@ class AccountActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAccountBinding
     private lateinit var auth : FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
-    private lateinit var storageReference:  StorageReference
+    private lateinit var storageReference: StorageReference
     private lateinit var imageUri: Uri
     private lateinit var dialog : Dialog
-    override fun onCreate(savedInstanceState: Bundle?,inflater:LayoutInflater) {
+    override fun onCreate(savedInstanceState: Bundle?,inflater: LayoutInflater) {
         super.onCreate(savedInstanceState)
         binding = ActivityAccountBinding.inflate( layoutInflater)
         setContentView(binding.root)
@@ -140,7 +140,7 @@ class AccountActivity : AppCompatActivity() {
         }
     }
     private fun uploadProfilePic(){
-        storageReference=FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid)
+        storageReference= FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid)
         storageReference.putFile(imageUri).addOnSuccessListener {
             hideProgressBar()
             Toast.makeText(this@AccountActivity, "Profile succesfuly updated",Toast.LENGTH_SHORT).show()
