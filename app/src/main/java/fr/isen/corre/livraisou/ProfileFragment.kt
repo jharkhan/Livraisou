@@ -1,5 +1,6 @@
 package fr.isen.corre.livraisou
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -40,10 +41,16 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //setUserInformation()
         val database = Firebase.database
 
         val user = Firebase.auth.currentUser
+        if (user != null) {
+            Log.d(TAG, user.email.toString())
+            binding.btnLogin.visibility = View.INVISIBLE
+        }
+        else {
+            binding.btnLogout.visibility = View.INVISIBLE
+        }
         user?.let {
             val uid = user.uid
             val userRef = database.getReference(uid)
@@ -53,10 +60,13 @@ class ProfileFragment : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
-                    val dataUser = snapshot.getValue<User>()
-                    if (dataUser != null) {
-                        setUserInformation(dataUser)
-                    }
+                    val firstName = snapshot.child("surname").value
+                    val lastName = snapshot.child("name").value
+                    val phoneNumber = snapshot.child("phoneNum").value
+                    binding.userName.setText(firstName.toString())
+                    binding.userLastname.setText(lastName.toString())
+                    binding.userPhone.setText(phoneNumber.toString())
+                    binding.userEmail.setText(it.email.toString())
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -76,15 +86,7 @@ class ProfileFragment : Fragment() {
             changeActivityToAccount()
         }
         binding.btnLogout.setOnClickListener {
-            changeActivityToLogout()
-        }
-
-        binding.btnRegister.setOnClickListener {
-            changeActivityToRegister()
-        }
-
-        binding.btnMap.setOnClickListener {
-            changeActivityToMap()
+            logout()
         }
 
         binding.pastOrdersRedirect.setOnClickListener {
@@ -100,25 +102,45 @@ class ProfileFragment : Fragment() {
         val intent = Intent (activity, AccountActivity::class.java)
         startActivity(intent)
     }
-    private fun changeActivityToLogout() {
 
+    private fun logout() {
+        val alertDialog: AlertDialog = AlertDialog.Builder(this.context).create()
+        alertDialog.setTitle("Se déconnecter ?")
+        alertDialog.setMessage("Voulez vous vraiment vous deconnecter ?")
+
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Oui") {
+            dialog, which -> Firebase.auth.signOut()
+            binding.btnLogout.visibility = View.INVISIBLE
+            binding.btnLogin.visibility = View.VISIBLE
+            changeActivityToLogin()
+            dialog.dismiss()
+        }
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Non") {
+            dialog, which ->
+            dialog.dismiss()
+        }
+        alertDialog.show()
     }
-    private fun changeActivityToRegister() {
-        val intent = Intent (activity, RegisterActivity::class.java)
-        startActivity(intent)
-    }
-    private fun changeActivityToMap() {
-        val intent = Intent (activity, MapsActivity::class.java)
-        startActivity(intent)
-    }
+
     private fun changeActivityToPastOrders() {
         val intent = Intent (activity, PastOrdersActivity::class.java)
         startActivity(intent)
     }
     private fun setUserInformation(user: User) {
-        binding.editName.setText(user.name)
+
+        binding.userName.setText(user.name)
+
+
        // binding.editsurname.setText(user.surname)
        // binding.editName.setText(user.name)
 
     }
 }
+
+
+//Log.d(TAG, "dataUser.toString()")
+//Log.d(TAG, dataUser.toString())
+//if (dataUser != null) {
+//    setUserInformation(dataUser)
+//}
