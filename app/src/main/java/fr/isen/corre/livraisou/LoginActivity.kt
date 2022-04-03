@@ -4,13 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import fr.isen.corre.livraisou.databinding.ActivityLoginBinding
-
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 
 
 class LoginActivity : AppCompatActivity() {
@@ -26,11 +28,6 @@ class LoginActivity : AppCompatActivity() {
         if (user != null)
             changeActivityToMain()
         listenClick()
-    }
-
-
-    private fun reload() {
-        TODO("Not yet implemented")
     }
 
     private fun listenClick() {
@@ -65,8 +62,10 @@ class LoginActivity : AppCompatActivity() {
             )
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
+                        // Sign in success, update UI
+
                         Log.d(TAG, "signInWithEmail:success")
+
                         changeActivityToMain()
                     } else {
                         // If sign in fails, display a message to the user.

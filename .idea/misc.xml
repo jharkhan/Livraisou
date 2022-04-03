@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/drawable/ic_arrow.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.24479166666666666" />
+        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/drawable/ic_launcher_background.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_account.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_basket.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_footer.xml" value="0.20416666666666666" />
@@ -15,6 +18,7 @@
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_products.xml" value="0.24270833333333333" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/card_cell.xml" value="0.67" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/cell_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/cell_shop.xml" value="0.11803444782168186" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/fragment_account.xml" value="0.21927083333333333" />
