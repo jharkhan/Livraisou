@@ -30,11 +30,47 @@ class ShopListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val database = Firebase.database
-        val mainActivity = this
+        fillList()
         binding.recyclerView.apply {
             layoutManager = GridLayoutManager(context, 1)
-           // adapter = CardAdapter(bookList, mainActivity)
+            adapter = CardAdapter(shopList, this)
         }
+    }
+
+    private fun fillList() {
+
+
+        val carrefour = Shop(
+            R.drawable.ic_launcher_foreground,
+            "Carrefour",
+            "carrefour"
+
+        )
+        val auchan = Shop(
+            R.drawable.ic_launcher_foreground,
+            "auchan",
+            "auchan"
+
+        )
+        val leclerc = Shop(
+            R.drawable.ic_launcher_foreground,
+            "leclerc",
+            "leclerc"
+
+        )
+        val geantCasino = Shop(
+            R.drawable.ic_launcher_foreground,
+            "géant casino",
+            "géant casino"
+
+        )
+        val shops = arrayOf(carrefour, leclerc, geantCasino, auchan)
+
+        for (shop in shops)
+        {
+            shopList.add(shop)
+        }
+
     }
 
     private fun setUserInformation(dataSnapshot: DataSnapshot, user: FirebaseUser) {

@@ -11,19 +11,26 @@
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/drawable/ic_launcher_background.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_account.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_basket.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_detail.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_footer.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_list_shop.xml" value="0.22864583333333333" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_maps.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_products.xml" value="0.24270833333333333" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/activity_register.xml" value="0.25" />
-        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/card_cell.xml" value="0.67" />
+        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/card_cell.xml" value="0.25" />
+        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/cell_basket.xml" value="0.22864583333333333" />
+        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/cell_categories.xml" value="0.22864583333333333" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/cell_main.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/cell_shop.xml" value="0.11803444782168186" />
+        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/cell_past_orders.xml" value="0.22864583333333333" />
+        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/cell_products.xml" value="0.22864583333333333" />
+        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/cell_shop.xml" value="0.33" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/fragment_account.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/fragment_maps.xml" value="0.1" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
+        <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/fragment_shop_detail.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/layout/fragment_shop_list.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/menu/menu.xml" value="0.1" />
         <entry key="..\:/Users/tikou/AndroidStudioProjects/Livraisou/app/src/main/res/menu/nav_menu.xml" value="0.20572916666666666" />
