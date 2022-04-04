@@ -16,7 +16,7 @@ import fr.isen.corre.livraisou.databinding.ActivityRegisterBinding
 class RegisterActivity : AppCompatActivity() {
     private  lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
-    val TAG = "LoginActivity"
+    val TAG = "RegisterActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -44,7 +44,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun changeActivityToMain() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, ShopListActivity::class.java))
     }
 
     private fun changeActivityToLogin() {

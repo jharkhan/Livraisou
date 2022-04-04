@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun changeActivityToMain() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, ShopListActivity::class.java))
     }
 
     private fun changeActivityToRegister() {

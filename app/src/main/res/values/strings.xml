@@ -24,7 +24,8 @@
     <string name="past_orders_u"><u>Historique des commandes</u></string>
     <string name="add">Ajouter au panier</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string><string name="post_a_status">Poster un status</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="post_a_status">Poster un status</string>
     <string name="writing_title">Ecrivez un titre ici</string>
     <string name="put_content">Ecrivez votre post ici</string>
     <string name="postButton">Poster</string>
