@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import fr.isen.corre.livraisou.databinding.FragmentShopDetailBinding
-import fr.isen.corre.livraisou.databinding.FragmentShopListBinding
+
 
 class ShopDetailsFragment : Fragment() {
     private lateinit var  binding: FragmentShopDetailBinding
