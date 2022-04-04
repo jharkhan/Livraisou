@@ -24,8 +24,6 @@ class ShopDetailsActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         val shopID = intent.getIntExtra(SHOP_ID, -1)
-
-
     }
 
 

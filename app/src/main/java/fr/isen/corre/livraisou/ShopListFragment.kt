@@ -84,11 +84,6 @@ class ShopListFragment : Fragment() {
 
     }
 
-    private fun setUserInformation(dataSnapshot: DataSnapshot, user: FirebaseUser) {
-        val firstName = dataSnapshot.child("surname").value
-        val lastName = dataSnapshot.child("name").value
-        val phoneNumber = dataSnapshot.child("phoneNum").value
-    }
 
     private fun getData(database: FirebaseDatabase,) {
         val ShopsRef = database.getReference()
