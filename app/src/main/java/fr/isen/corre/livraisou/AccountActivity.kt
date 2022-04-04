@@ -20,10 +20,16 @@ import com.google.firebase.storage.StorageReference
 import fr.isen.corre.livraisou.databinding.ActivityAccountBinding
 import java.io.File
 import android.R
+import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
-import android.view.View
+import android.os.Build
+import android.provider.MediaStore
 import android.widget.ImageView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import com.squareup.picasso.Picasso
 
 
@@ -33,10 +39,12 @@ class AccountActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAccountBinding
     private lateinit var auth : FirebaseAuth
     private lateinit var storageReference: StorageReference
-    private lateinit var imageUri: Uri
+    private  var imageUri: Uri?=null
     private lateinit var dialog : Dialog
     private lateinit var uid :String
-    private lateinit var imageView: ImageView
+    private  var imageView: ImageView? =null
+    private var CAPTURE_PHOTO=1
+    private val CHOOSE_PHOTO = 2
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         binding = ActivityAccountBinding.inflate( layoutInflater)
@@ -44,6 +52,19 @@ class AccountActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         uid = auth.currentUser?.uid.toString()
+        binding.profilPic.setOnClickListener{
+            //check permission at runtime
+            val checkSelfPermission = ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            if (checkSelfPermission != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(this,
+                    arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
+            }
+            else{
+                openGallery()
+            }
+
+        }
         binding.btnSave.setOnClickListener {
 
 
@@ -175,11 +196,76 @@ class AccountActivity : AppCompatActivity() {
         }
 
     }
-    private fun pickImageGallery(){
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/"
-       
 
+    private fun capturePhoto(){
+        val capturedImage = File(externalCacheDir, "My_Captured_Photo.jpg")
+        if(capturedImage.exists()) {
+                capturedImage.delete()
+            }
+        capturedImage.createNewFile()
+        imageUri = if(Build.VERSION.SDK_INT >= 24){
+            FileProvider.getUriForFile(this, "info.camposha.kimagepicker.fileprovider",
+                capturedImage)
+        } else {
+                Uri.fromFile(capturedImage)
+        }
+
+        val intent = Intent("android.media.action.IMAGE_CAPTURE")
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+        startActivityForResult(intent, CAPTURE_PHOTO)
+        }
+    private fun openGallery(){
+        val intent = Intent("android.intent.action.GET_CONTENT")
+        intent.type = "image/*"
+        startActivityForResult(intent, CHOOSE_PHOTO)
+    }
+    companion object {
+        private val CHOOSE_PHOTO= 1000;
+        private val PERMISSION_CODE = 1001;
+    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode){
+            PERMISSION_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    openGallery()
+                }else{
+                    Toast.makeText(this,"Permission denied", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun renderImage(imagePath: String?){
+        if (imagePath != null) {
+            val bitmap = BitmapFactory.decodeFile(imagePath)
+            imageView?.setImageBitmap(bitmap)
+        }
+        else {
+            Toast.makeText(this,"ImagePath is null",Toast.LENGTH_SHORT).show()
+        }
+    }
+    private fun openGalleryOrTakePic() {
+        val alertDialog: AlertDialog = AlertDialog.Builder(this.context).create()
+        alertDialog.setTitle("Chosissez une photo")
+        alertDialog.setMessage("Veuillez prendre une photo depuis:")
+
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Gallery") {
+                dialog, which ->
+            openGallery()
+            dialog.dismiss()
+        }
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Non") {
+                dialog, which ->
+            capturePhoto()
+            dialog.dismiss()
+        }
+        alertDialog.show()
     }
     private fun showProgressBar(){
         dialog = Dialog(this@AccountActivity)
