@@ -6,5 +6,5 @@ data class User(
     val phoneNum: String = "",
     val id: String = "",
     val profilPicURL: String ="",
-    val location: String
+    val location: String=""
 )
