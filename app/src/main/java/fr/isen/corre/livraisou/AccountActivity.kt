@@ -35,6 +35,7 @@ import com.squareup.picasso.Picasso
 
 class AccountActivity : AppCompatActivity() {
 
+
     val TAG = "AccountActivity"
     private lateinit var binding: ActivityAccountBinding
     private lateinit var auth : FirebaseAuth
@@ -44,7 +45,6 @@ class AccountActivity : AppCompatActivity() {
     private lateinit var uid :String
     private  var imageView: ImageView? =null
     private var CAPTURE_PHOTO=1
-    private val CHOOSE_PHOTO = 2
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         binding = ActivityAccountBinding.inflate( layoutInflater)
@@ -61,7 +61,7 @@ class AccountActivity : AppCompatActivity() {
                     arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
             }
             else{
-                openGallery()
+                openGalleryOrTakePic()
             }
 
         }
@@ -243,14 +243,14 @@ class AccountActivity : AppCompatActivity() {
     private fun renderImage(imagePath: String?){
         if (imagePath != null) {
             val bitmap = BitmapFactory.decodeFile(imagePath)
-            imageView?.setImageBitmap(bitmap)
+            binding.profilPic.setImageBitmap(bitmap)
         }
         else {
             Toast.makeText(this,"ImagePath is null",Toast.LENGTH_SHORT).show()
         }
     }
     private fun openGalleryOrTakePic() {
-        val alertDialog: AlertDialog = AlertDialog.Builder(this.context).create()
+        val alertDialog: AlertDialog = AlertDialog.Builder(this).create()
         alertDialog.setTitle("Chosissez une photo")
         alertDialog.setMessage("Veuillez prendre une photo depuis:")
 
