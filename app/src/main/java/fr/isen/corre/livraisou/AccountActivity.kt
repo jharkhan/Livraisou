@@ -24,12 +24,14 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
+import android.icu.number.NumberFormatter.with
 import android.os.Build
 import android.provider.MediaStore
 import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.google.firebase.database.annotations.Nullable
 import com.squareup.picasso.Picasso
 
 
@@ -54,15 +56,15 @@ class AccountActivity : AppCompatActivity() {
         uid = auth.currentUser?.uid.toString()
         binding.profilPic.setOnClickListener{
             //check permission at runtime
-            val checkSelfPermission = ContextCompat.checkSelfPermission(this,
+           /* val checkSelfPermission = ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
             if (checkSelfPermission != PackageManager.PERMISSION_GRANTED){
                 ActivityCompat.requestPermissions(this,
                     arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
             }
-            else{
+            else{*/
                 openGalleryOrTakePic()
-            }
+           // }
 
         }
         binding.btnSave.setOnClickListener {
@@ -101,10 +103,11 @@ class AccountActivity : AppCompatActivity() {
                         binding.profilPic.setImageDrawable(photoURL as Drawable?)
                         binding.userLocation.setText(location.toString())
                         binding.userEmail.setText(it.email.toString())
-                        getUserProfile()
-                       // if(photoURL?.isNotEmpty() == true) {
-                       //     Picasso.get().load(photoURL).placeholder(R.drawable.good_food).into(binding.photo)
-                       // }
+                        getUserProfilePic()
+                       if(photoURL?.isNotEmpty() == true) {
+                           //Picasso.get().load(photoURL).placeholder(R.drawable.good_food).into(binding.photo)
+                           Picasso.with(this).load(imageUri).into(profilPic)
+                        }
 
                     }
 
@@ -170,8 +173,10 @@ class AccountActivity : AppCompatActivity() {
     }
 
     private fun uploadProfile(){
-        imageUri=Uri.parse("android.resource://$packageName/${R.drawable.profile}")
+
+        //imageUri=Uri.parse("android.resource://$packageName/${R.drawable.profile}")
         storageReference= FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid)
+        imageUri=data.getData();
         storageReference.putFile(imageUri).addOnSuccessListener {
             hideProgressBar()
             Toast.makeText(this@AccountActivity, "Profile succesfuly updated",Toast.LENGTH_SHORT).show()
@@ -182,7 +187,7 @@ class AccountActivity : AppCompatActivity() {
 
     }
 
-    private fun getUserProfile(){
+    private fun getUserProfilePic(){
 
         storageReference= FirebaseStorage.getInstance().getReference("Users/$uid.jpg")
         val localFile = File.createTempFile("tempImage","jpg")
@@ -198,24 +203,24 @@ class AccountActivity : AppCompatActivity() {
     }
 
     private fun capturePhoto(){
-        val capturedImage = File(externalCacheDir, "My_Captured_Photo.jpg")
-        if(capturedImage.exists()) {
-                capturedImage.delete()
-            }
-        capturedImage.createNewFile()
-        imageUri = if(Build.VERSION.SDK_INT >= 24){
-            FileProvider.getUriForFile(this, "info.camposha.kimagepicker.fileprovider",
-                capturedImage)
-        } else {
-                Uri.fromFile(capturedImage)
-        }
+      //  val capturedImage = File(externalCacheDir, "My_Captured_Photo.jpg")
+       // if(capturedImage.exists()) {
+        //        capturedImage.delete()
+       //     }
+       // capturedImage.createNewFile()
+      //  imageUri = if(Build.VERSION.SDK_INT >= 24){
+      //      FileProvider.getUriForFile(this, "info.camposha.kimagepicker.fileprovider",
+      //          capturedImage)
+      //  } else {
+      //          Uri.fromFile(capturedImage)
+      //  }
 
-        val intent = Intent("android.media.action.IMAGE_CAPTURE")
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
         startActivityForResult(intent, CAPTURE_PHOTO)
         }
     private fun openGallery(){
-        val intent = Intent("android.intent.action.GET_CONTENT")
+        val intent = Intent(Intent.ACTION_PICK))
         intent.type = "image/*"
         startActivityForResult(intent, CHOOSE_PHOTO)
     }
@@ -270,7 +275,7 @@ class AccountActivity : AppCompatActivity() {
     private fun showProgressBar(){
         dialog = Dialog(this@AccountActivity)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.dialog_wait)
+        dialog.setContentView(R.layout.wait)
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
     }
