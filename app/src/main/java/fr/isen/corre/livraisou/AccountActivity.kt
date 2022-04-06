@@ -99,7 +99,7 @@ class AccountActivity : AppCompatActivity() {
                 userRef.setValue(User(binding.userFirstName.text.toString(), binding.userLastname.text.toString(), binding.userPhoneNumber.text.toString(),binding.userLocation.text.toString()))
             }
         }
-        getUserProfilePic()
+        //getUserProfilePic()
         binding.profilPic.setOnClickListener{
             //check permission at runtime
            /* val checkSelfPermission = ContextCompat.checkSelfPermission(this,

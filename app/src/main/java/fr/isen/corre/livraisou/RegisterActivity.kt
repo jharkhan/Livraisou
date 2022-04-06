@@ -15,18 +15,14 @@ import fr.isen.corre.livraisou.databinding.ActivityRegisterBinding
 class RegisterActivity : AppCompatActivity() {
     private  lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
-    val TAG = "LoginActivity"
+    private val tag = "LoginActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
-
         listenClick()
-
     }
-
-
 
     private fun listenClick() {
         binding.buttonRegister.setOnClickListener {
@@ -37,9 +33,6 @@ class RegisterActivity : AppCompatActivity() {
             changeActivityToLogin()
         }
 
-        binding.btnWithoutAuth.setOnClickListener {
-            changeActivityToMain()
-        }
     }
 
     private fun changeActivityToMain() {
@@ -51,32 +44,54 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun register() {
-        auth.createUserWithEmailAndPassword(
-            binding.emailAddress.text.toString().trim(),binding.password.text.toString().trim())
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "createUserWithEmail:success")
-                    val database = Firebase.database
-                    val user = Firebase.auth.currentUser
-                    user?.let {
-                        val uid = user.uid
-                        val userRef = database.getReference(uid)
-
-                        userRef.setValue(User(binding.firstName.text.toString(), binding.lastName.text.toString(), binding.phoneNumber.text.toString()))
+        if (checkForm())
+        {
+            auth.createUserWithEmailAndPassword(
+                binding.userEmailAddress.text.toString().trim(),binding.userPassword.text.toString().trim())
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(tag, "createUserWithEmail:success")
+                        val database = Firebase.database
+                        val user = auth.currentUser
+                        user?.let {
+                            val uid = it.uid
+                            val userRef = database.getReference(uid)
+                            userRef.setValue(User(binding.userFirstName.text.toString(), binding.lastName.text.toString(), binding.userPhoneNumber.text.toString()))
+                        }
+                        changeActivityToMain()
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(tag, "createUserWithEmail:failure", task.exception)
+                        Log.w(binding.userEmailAddress.text.toString(), task.exception)
+                        Toast.makeText(baseContext, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show()
                     }
-                    changeActivityToMain()
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Log.w(binding.emailAddress.text.toString(), task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
                 }
-            }
+        }
     }
 
-    private fun checkUserInfo() {
+
+    private fun checkForm(): Boolean {
+        if((binding.lastName.text.toString().isEmpty() || binding.userFirstName.text.toString().isEmpty() || binding.userPhoneNumber.text.toString().isEmpty() || binding.userEmailAddress.text.toString().isEmpty() || binding.userPassword.text.toString().isEmpty()))
+        {
+            Toast.makeText(baseContext, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        else {
+            if(binding.userPassword.text!!.length < 6)
+            {
+                Toast.makeText(baseContext, "Votre mot de passe doit contenir au moins 6 caractères", Toast.LENGTH_SHORT).show()
+                return false
+            }
+            if(binding.userPassword.text != binding.userCheckPassword.text)
+            {
+                Toast.makeText(baseContext, "Vos mots de passe doivent etre indentiques", Toast.LENGTH_SHORT).show()
+                return false
+            }
+        }
+
+        return true
 
     }
 }
