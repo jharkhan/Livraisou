@@ -33,6 +33,7 @@ class ProfileFragment : Fragment() {
         val database = Firebase.database
 
         val user = Firebase.auth.currentUser
+
         if (user != null) {
             Log.d(TAG, user.email.toString())
             binding.btnLogin.visibility = View.INVISIBLE
