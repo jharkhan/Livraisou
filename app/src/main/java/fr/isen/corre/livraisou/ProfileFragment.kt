@@ -1,3 +1,4 @@
+
 package fr.isen.corre.livraisou
 
 import android.app.AlertDialog
@@ -49,7 +50,7 @@ class ProfileFragment : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
-                    getUserData(snapshot)
+                    setUserInformation(snapshot, it)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -92,7 +93,7 @@ class ProfileFragment : Fragment() {
         alertDialog.setMessage("Voulez vous vraiment vous deconnecter ?")
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Oui") {
-            dialog, which -> Firebase.auth.signOut()
+                dialog, which -> Firebase.auth.signOut()
             binding.btnLogout.visibility = View.INVISIBLE
             binding.btnLogin.visibility = View.VISIBLE
             changeActivityToLogin()
@@ -100,7 +101,7 @@ class ProfileFragment : Fragment() {
         }
 
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Non") {
-            dialog, which ->
+                dialog, which ->
             dialog.dismiss()
         }
         alertDialog.show()
@@ -110,16 +111,14 @@ class ProfileFragment : Fragment() {
         val intent = Intent (activity, PastOrdersActivity::class.java)
         startActivity(intent)
     }
-    fun getUserData(snapshot: DataSnapshot) {
-        val firstName = snapshot.child("name").value
-        val lastName = snapshot.child("surname").value
-        val phoneNumber = snapshot.child("phoneNum").value
-        binding.userFirstName.setText(firstName.toString())
-        binding.userLastName.setText(lastName.toString())
-        binding.userPhoneNumber.setText(phoneNumber.toString())
-        binding.userEmail.setText(Firebase.auth.currentUser?.email.toString())
 
+    private fun setUserInformation(dataSnapshot: DataSnapshot, user: FirebaseUser) {
+        val firstName = dataSnapshot.child("surname").value
+        val lastName = dataSnapshot.child("name").value
+        val phoneNumber = dataSnapshot.child("phoneNum").value
+        binding.userName.setText(firstName.toString())
+        binding.userLastname.setText(lastName.toString())
+        binding.userPhone.setText(phoneNumber.toString())
+        binding.userEmail.setText(user.email.toString())
     }
 }
-
-

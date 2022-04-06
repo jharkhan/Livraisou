@@ -107,7 +107,7 @@ class ShopListFragment : Fragment(), ShopClickListener {
         Log.d(TAG, " shop : $shop")
         Log.d(TAG, " shop test")
         val intent = Intent(context, ShopDetailsActivity::class.java)
-        intent.putExtra(SHOP_ID_EXTRA, shop.title)
+        intent.putExtra(SHOP_EXTRA, shop.title)
         startActivity(intent)
     }
 

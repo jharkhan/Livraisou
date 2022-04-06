@@ -99,28 +99,6 @@
         app:layout_constraintTop_toBottomOf="@+id/btnUpdate" />
 
     <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="64dp"
-        android:text="@string/register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/btnLogin"
-        app:layout_constraintTop_toBottomOf="@+id/btnUpdate" />
-
-    <Button
-        android:id="@+id/btnMap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:text="go to map"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogout" />
-
-    <Button
         android:id="@+id/btnUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -141,7 +119,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnUpdate" />
 
     <TextView
-        android:id="@+id/userLastName"
+        android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -153,7 +131,7 @@
         app:layout_constraintVertical_bias="0.542" />
 
     <TextView
-        android:id="@+id/userFirstName"
+        android:id="@+id/userLastname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -163,7 +141,7 @@
         app:layout_constraintStart_toEndOf="@+id/firstName" />
 
     <TextView
-        android:id="@+id/userPhoneNumber"
+        android:id="@+id/userPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"

@@ -14,8 +14,8 @@ class ShopDetailsActivity: AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val shopName = intent.getStringExtra(SHOP_ID_EXTRA)
-        val shop = shopName?.let { shopFromID(it) }
+        val shopName = intent.getStringExtra(SHOP_EXTRA)
+        val shop = shopName?.let { shopFromName(it) }
 
         shop?.let {
             binding.cover.setImageResource(it.cover)
@@ -24,7 +24,7 @@ class ShopDetailsActivity: AppCompatActivity() {
         }
     }
 
-    private fun shopFromID(shopName: String): Shop?
+    private fun shopFromName(shopName: String): Shop?
     {
         for(shop in shopList)
         {
