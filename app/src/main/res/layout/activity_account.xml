@@ -10,16 +10,20 @@
 
     <ImageView
         android:id="@+id/profilPic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="254dp"
+        android:layout_height="224dp"
         android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
         android:clickable="true"
-        android:layout_marginTop="44dp"
+        android:src="@drawable/ic_profil"
+        app:layout_constraintBottom_toTopOf="@+id/edittext_lastname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@tools:sample/avatars"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edittext_lastname"
@@ -80,65 +84,14 @@
             android:text="Enter email" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edittext_currentpassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/password"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_mail"
-        app:startIconDrawable="@drawable/ic_lock_password"
-        app:endIconMode="password_toggle"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:text="Enter password" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edittext_newpassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/new_password"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_currentpassword"
-        app:startIconDrawable="@drawable/ic_lock_password"
-        app:endIconMode="password_toggle"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/userNewPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:text="Enter password" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edittext_verifpassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/verif_password"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_newpassword"
-        app:startIconDrawable="@drawable/ic_lock_password"
-        app:endIconMode="password_toggle"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/userVerifPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:text="Enter password" />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edittext_addresse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/location"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_verifpassword"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_mail"
         app:startIconDrawable="@drawable/ic_location"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
@@ -155,6 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:text="@string/btn_update"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edittext_addresse" />
