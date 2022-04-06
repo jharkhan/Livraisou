@@ -62,9 +62,9 @@ class RegisterActivity : AppCompatActivity() {
                     user?.let {
                         val uid = user.uid
                         val userRef = database.getReference(uid)
+
                         userRef.setValue(User(binding.firstName.text.toString(), binding.lastName.text.toString(), binding.phoneNumber.text.toString()))
                     }
-
                     changeActivityToMain()
                 } else {
                     // If sign in fails, display a message to the user.
@@ -74,5 +74,9 @@ class RegisterActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun checkUserInfo() {
+
     }
 }
