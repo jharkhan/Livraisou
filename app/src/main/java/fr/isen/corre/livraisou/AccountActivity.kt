@@ -97,7 +97,6 @@ class AccountActivity : AppCompatActivity() {
                     binding.userLastname.setText(lastName.toString())
                     binding.userPhoneNumber.setText(phoneNumber.toString())
                     binding.userEmail.setText(Firebase.auth.currentUser?.email.toString())
-                   // binding.profilPic.setImageDrawable(photoURL as Drawable?)
                     binding.userLocation.setText(location.toString())
                     getUserProfilePic()
 
@@ -158,7 +157,7 @@ class AccountActivity : AppCompatActivity() {
                 //            Log.d(TAG, "Email sent.")
                 //       }
                 //   }
-                uploadProfile()
+                uploadProfilPic()
             } else {
                 // No user is signed in
                 Toast.makeText(
@@ -169,17 +168,24 @@ class AccountActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadProfile(){
-
-        //imageUri=Uri.parse("android.resource://$packageName/${R.drawable.profile}")
-        storageReference= FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid)
-       // imageUri=data.getData();
-        storageReference.putFile(imageUri).addOnSuccessListener {
-            hideProgressBar()
-            Toast.makeText(this@AccountActivity, "Profile succesfuly updated",Toast.LENGTH_SHORT).show()
-        }.addOnFailureListener{
-            hideProgressBar()
-            Toast.makeText(this@AccountActivity, "Failed to update the image",Toast.LENGTH_SHORT).show()
+    override fun onActivityReenter(resultCode: Int, data: Intent?) {
+        super.onActivityReenter(resultCode, data)
+        if(resultCode== RESULT_OK && data !=null){
+            imageUri=data.getData()
+            binding.profilPic.setImageURI(imageUri)
+        }
+    }
+    private fun uploadProfilPic(){
+       // storageReference= FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid)
+        storageReference= FirebaseStorage.getInstance().getReference().child("profilPic/userPic.jpg")
+        imageUri?.let {
+            storageReference.putFile(it).addOnSuccessListener {
+                hideProgressBar()
+                Toast.makeText(this@AccountActivity, "Profile succesfuly updated",Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener{
+                hideProgressBar()
+                Toast.makeText(this@AccountActivity, "Failed to update the image",Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
@@ -188,7 +194,7 @@ class AccountActivity : AppCompatActivity() {
 
         //storageReference= FirebaseStorage.getInstance().getReference("Users/$uid.jpg")
         storageReference= FirebaseStorage.getInstance().getReference().child("profilPic/timon.jpg")
-        val localFile = File.createTempFile("tempImage","jpg")
+        val localFile = File.createTempFile("tempImage",".jpg")
         storageReference.getFile(localFile).addOnSuccessListener{
             val bitmap= BitmapFactory.decodeFile(localFile.absolutePath)
             binding.profilPic.setImageBitmap(bitmap)
@@ -202,11 +208,12 @@ class AccountActivity : AppCompatActivity() {
     }
 
     private fun capturePhoto(){
-      //  val capturedImage = File(externalCacheDir, "My_Captured_Photo.jpg")
-       // if(capturedImage.exists()) {
-        //        capturedImage.delete()
-       //     }
-       // capturedImage.createNewFile()
+     //  val capturedImage = File(externalCacheDir, "Captured_profilPic$uid.jpg")
+    //   if(capturedImage.exists()) {
+      //          capturedImage.delete()
+     //      }
+      //  capturedImage.createNewFile()
+
       //  imageUri = if(Build.VERSION.SDK_INT >= 24){
       //      FileProvider.getUriForFile(this, "info.camposha.kimagepicker.fileprovider",
       //          capturedImage)
@@ -220,9 +227,15 @@ class AccountActivity : AppCompatActivity() {
         }
 
     private fun openGallery(){
-        val intent = Intent(Intent.ACTION_PICK)
+
+        val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         intent.type = "image/*"
         startActivityForResult(intent, CHOOSE_PHOTO)
+    }
+
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
     }
     companion object {
         private val CHOOSE_PHOTO= 1000;
