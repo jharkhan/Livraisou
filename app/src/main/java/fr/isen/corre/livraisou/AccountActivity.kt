@@ -168,13 +168,7 @@ class AccountActivity : AppCompatActivity() {
         }
     }
 
-    override fun onActivityReenter(resultCode: Int, data: Intent?) {
-        super.onActivityReenter(resultCode, data)
-        if(resultCode== RESULT_OK && data !=null){
-            imageUri=data.getData()
-            binding.profilPic.setImageURI(imageUri)
-        }
-    }
+
     private fun uploadProfilPic(){
        // storageReference= FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid)
         storageReference= FirebaseStorage.getInstance().getReference().child("profilPic/userPic.jpg")
@@ -206,7 +200,13 @@ class AccountActivity : AppCompatActivity() {
         }
 
     }
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode== RESULT_OK && data !=null){
+            imageUri=data.getData()
+            binding.profilPic.setImageURI(imageUri)
+        }
+    }
     private fun capturePhoto(){
      //  val capturedImage = File(externalCacheDir, "Captured_profilPic$uid.jpg")
     //   if(capturedImage.exists()) {
@@ -227,16 +227,11 @@ class AccountActivity : AppCompatActivity() {
         }
 
     private fun openGallery(){
-
         val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         intent.type = "image/*"
         startActivityForResult(intent, CHOOSE_PHOTO)
     }
 
-  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-    }
     companion object {
         private val CHOOSE_PHOTO= 1000;
         private val PERMISSION_CODE = 1001;
