@@ -1,6 +1,5 @@
 package fr.isen.corre.livraisou
 
-import android.graphics.drawable.Drawable
 
 var shopList = mutableListOf<Shop>()
 val SHOP_ID = "ShopId"

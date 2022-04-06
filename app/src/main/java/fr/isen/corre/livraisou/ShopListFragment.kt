@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -23,14 +22,14 @@ class ShopListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentShopListBinding.inflate(layoutInflater)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val database = Firebase.database
+        Firebase.database
         fillList()
         binding.recyclerView.apply {
             layoutManager = GridLayoutManager(context, 1)
@@ -86,9 +85,9 @@ class ShopListFragment : Fragment() {
 
 
     private fun getData(database: FirebaseDatabase,) {
-        val ShopsRef = database.getReference()
+        val shopsRef = database.getReference()
         // Read from the database
-        ShopsRef.addValueEventListener(object: ValueEventListener {
+        shopsRef.addValueEventListener(object: ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
