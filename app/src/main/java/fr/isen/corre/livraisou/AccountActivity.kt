@@ -265,7 +265,7 @@ class AccountActivity : AppCompatActivity() {
             dialog.dismiss()
         }
 
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Non") {
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Camera") {
                 dialog, which ->
             capturePhoto()
             dialog.dismiss()
