@@ -134,29 +134,6 @@ class AccountActivity : AppCompatActivity() {
               //      }
              //   }
 
-
-                //send email verif
-               // user!!.sendEmailVerification()
-               //     .addOnCompleteListener { task ->
-               //         if (task.isSuccessful) {
-              //              Log.d(TAG, "Email sent.")
-               //         }
-              //      }
-                //update password
-                // user!!.updatePassword(userNewPassword)
-                //   .addOnCompleteListener { task ->
-                //       if (task.isSuccessful) {
-                //          Log.d(TAG, "User password updated.")
-                //       }
-                //   }
-
-                //send an email to reset password !!!!Mot de passe oublié
-                // Firebase.auth.sendPasswordResetEmail(email)
-                //     .addOnCompleteListener { task ->
-                //         if (task.isSuccessful) {
-                //            Log.d(TAG, "Email sent.")
-                //       }
-                //   }
                 uploadProfilPic()
             } else {
                 // No user is signed in
