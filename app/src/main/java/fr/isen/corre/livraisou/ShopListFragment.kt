@@ -1,5 +1,6 @@
 package fr.isen.corre.livraisou
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -16,26 +16,37 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import fr.isen.corre.livraisou.databinding.FragmentShopListBinding
 
-class ShopListFragment : Fragment() {
+class ShopListFragment : Fragment(), ShopClickListener {
     private  lateinit var binding: FragmentShopListBinding
     val TAG = "ShopListFragment"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentShopListBinding.inflate(layoutInflater)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val database = Firebase.database
+        Firebase.database
         fillList()
+        val activity = this
         binding.recyclerView.apply {
             layoutManager = GridLayoutManager(context, 1)
-            adapter = CardAdapter(shopList, this)
+            adapter = CardAdapter(shopList, activity)
+
+            this.setOnClickListener {
+                showDetails()
+            }
         }
     }
+
+    private fun showDetails() {
+        val intent = Intent(context, ShopDetailsActivity::class.java)
+        startActivity(intent)
+    }
+
 
     private fun fillList() {
 
@@ -73,16 +84,11 @@ class ShopListFragment : Fragment() {
 
     }
 
-    private fun setUserInformation(dataSnapshot: DataSnapshot, user: FirebaseUser) {
-        val firstName = dataSnapshot.child("surname").value
-        val lastName = dataSnapshot.child("name").value
-        val phoneNumber = dataSnapshot.child("phoneNum").value
-    }
 
     private fun getData(database: FirebaseDatabase,) {
-        val ShopsRef = database.getReference()
+        val shopsRef = database.getReference()
         // Read from the database
-        ShopsRef.addValueEventListener(object: ValueEventListener {
+        shopsRef.addValueEventListener(object: ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
@@ -96,5 +102,14 @@ class ShopListFragment : Fragment() {
 
         })
     }
+
+    override fun onClick(shop: Shop) {
+        Log.d(TAG, " shop : $shop")
+        Log.d(TAG, " shop test")
+        val intent = Intent(context, ShopDetailsActivity::class.java)
+        intent.putExtra(SHOP_ID_EXTRA, shop.title)
+        startActivity(intent)
+    }
+
 
 }

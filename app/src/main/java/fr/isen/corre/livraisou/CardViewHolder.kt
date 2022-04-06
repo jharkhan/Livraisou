@@ -5,6 +5,7 @@ import fr.isen.corre.livraisou.databinding.CardCellBinding
 
 class CardViewHolder(
     private val cardCellBinding: CardCellBinding,
+    private val clickListener: ShopClickListener
 ): RecyclerView.ViewHolder(cardCellBinding.root)
 
 {
@@ -14,5 +15,9 @@ class CardViewHolder(
         cardCellBinding.cover.setImageResource(shop.cover)
         cardCellBinding.title.text = shop.title
         cardCellBinding.description.text = shop.description
+
+        cardCellBinding.cardView.setOnClickListener {
+            clickListener.onClick(shop)
+        }
     }
 }
