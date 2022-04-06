@@ -220,7 +220,7 @@ class AccountActivity : AppCompatActivity() {
         }
 
     private fun openGallery(){
-        val intent = Intent(Intent.ACTION_PICK))
+        val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, CHOOSE_PHOTO)
     }
