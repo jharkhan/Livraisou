@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -52,7 +51,8 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun register() {
-        auth.createUserWithEmailAndPassword(binding.emailAddress.text.toString().trim(),binding.password.text.toString().trim())
+        auth.createUserWithEmailAndPassword(
+            binding.emailAddress.text.toString().trim(),binding.password.text.toString().trim())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
@@ -64,6 +64,7 @@ class RegisterActivity : AppCompatActivity() {
                         val userRef = database.getReference(uid)
                         userRef.setValue(User(binding.firstName.text.toString(), binding.lastName.text.toString(), binding.phoneNumber.text.toString()))
                     }
+
                     changeActivityToMain()
                 } else {
                     // If sign in fails, display a message to the user.

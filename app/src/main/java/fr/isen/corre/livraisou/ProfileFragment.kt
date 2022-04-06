@@ -8,12 +8,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import fr.isen.corre.livraisou.databinding.FragmentProfileBinding
 
@@ -22,7 +22,7 @@ class ProfileFragment : Fragment() {
     val TAG = "ProfileFragment"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(layoutInflater)
         return binding.root
@@ -33,7 +33,6 @@ class ProfileFragment : Fragment() {
         val database = Firebase.database
 
         val user = Firebase.auth.currentUser
-
         if (user != null) {
             Log.d(TAG, user.email.toString())
             binding.btnLogin.visibility = View.INVISIBLE
@@ -42,7 +41,7 @@ class ProfileFragment : Fragment() {
             binding.btnLogout.visibility = View.INVISIBLE
         }
         user?.let {
-            val uid = user.uid
+            val uid = it.uid
             val userRef = database.getReference(uid)
             // Read from the database
             userRef.addValueEventListener(object: ValueEventListener {
@@ -124,8 +123,3 @@ class ProfileFragment : Fragment() {
 }
 
 
-//Log.d(TAG, "dataUser.toString()")
-//Log.d(TAG, dataUser.toString())
-//if (dataUser != null) {
-//    setUserInformation(dataUser)
-//}
