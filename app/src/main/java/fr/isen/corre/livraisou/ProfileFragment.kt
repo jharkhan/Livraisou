@@ -49,13 +49,7 @@ class ProfileFragment : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
-                    val firstName = snapshot.child("surname").value
-                    val lastName = snapshot.child("name").value
-                    val phoneNumber = snapshot.child("phoneNum").value
-                    binding.userName.setText(firstName.toString())
-                    binding.userLastname.setText(lastName.toString())
-                    binding.userPhone.setText(phoneNumber.toString())
-                    binding.userEmail.setText(it.email.toString())
+                    getUserData(snapshot)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -116,13 +110,14 @@ class ProfileFragment : Fragment() {
         val intent = Intent (activity, PastOrdersActivity::class.java)
         startActivity(intent)
     }
-    private fun setUserInformation(user: User) {
-
-        binding.userName.setText(user.name)
-
-
-       // binding.editsurname.setText(user.surname)
-       // binding.editName.setText(user.name)
+    fun getUserData(snapshot: DataSnapshot) {
+        val firstName = snapshot.child("name").value
+        val lastName = snapshot.child("surname").value
+        val phoneNumber = snapshot.child("phoneNum").value
+        binding.userFirstName.setText(firstName.toString())
+        binding.userLastName.setText(lastName.toString())
+        binding.userPhoneNumber.setText(phoneNumber.toString())
+        binding.userEmail.setText(Firebase.auth.currentUser?.email.toString())
 
     }
 }

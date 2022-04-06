@@ -4,7 +4,7 @@ data class User(
     val name: String = "",
     val surname: String = "",
     val phoneNum: String = "",
-    val id: String = "",
-    val profilPicURL: String ="",
-    val location: String=""
+    val location: String="",
+    val profilPicURL: String =""
+
 )

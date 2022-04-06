@@ -31,7 +31,6 @@ import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import com.google.firebase.database.annotations.Nullable
 import com.squareup.picasso.Picasso
 
 
@@ -49,7 +48,7 @@ class AccountActivity : AppCompatActivity() {
     private var CAPTURE_PHOTO=1
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-        binding = ActivityAccountBinding.inflate( layoutInflater)
+        binding = ActivityAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
@@ -74,40 +73,38 @@ class AccountActivity : AppCompatActivity() {
             val user = Firebase.auth.currentUser
             val database = Firebase.database
 
-            user?.let {
-                showProgressBar()
-                //val photoUrl = user.photoUrl
-                // Check if user's email is verified
-                //val emailVerified = user.isEmailVerified
-                // The user's ID, unique to the Firebase project. Do NOT use this value to
-                // authenticate with your backend server, if you have one. Use
-                // FirebaseUser.getToken() instead.
-                val uid = user.uid
-                val userRef = database.getReference(uid)
-                // Read from the database
-                userRef.addValueEventListener(object : ValueEventListener {
+        user?.let {
+             showProgressBar()
+            //val photoUrl = user.photoUrl
 
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        val firstName = snapshot.child("surname").value
-                        val lastName = snapshot.child("name").value
-                        val phoneNumber = snapshot.child("phoneNum").value
-                        val photoURL= snapshot.child("profilPicURL").value
-                        val location = snapshot.child("location").value
+            val uid = user.uid
+            val userRef = database.getReference(uid)
+            // Read from the database
+            userRef.addValueEventListener(object : ValueEventListener {
 
-                        binding.userFirstName.setText(firstName.toString())
-                        binding.userFullName.setText(lastName.toString())
-                       // binding.userFullName.setText(firstName.add.lastName.toString())
-                        binding.userPhoneNumber.setText(phoneNumber.toString())
-                        binding.profilPic.setImageDrawable(photoURL as Drawable?)
-                        binding.userLocation.setText(location.toString())
-                        binding.userEmail.setText(it.email.toString())
-                        getUserProfilePic()
-                       if(photoURL?.isNotEmpty() == true) {
-                           //Picasso.get().load(photoURL).placeholder(R.drawable.good_food).into(binding.photo)
-                           Picasso.with(this).load(imageUri).into(profilPic)
-                        }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+
+                   // val photoURL = snapshot.child("profilPicURL").value
+                    val firstName = snapshot.child("name").value
+                    val lastName = snapshot.child("surname").value
+                    val phoneNumber = snapshot.child("phoneNum").value
+                    val photoURL= snapshot.child("profilPicURL").value
+                    val location = snapshot.child("location").value
+
+                    binding.userFirstName.setText(firstName.toString())
+                    binding.userLastname.setText(lastName.toString())
+                    binding.userPhoneNumber.setText(phoneNumber.toString())
+                    binding.userEmail.setText(Firebase.auth.currentUser?.email.toString())
+                   // binding.profilPic.setImageDrawable(photoURL as Drawable?)
+                    binding.userLocation.setText(location.toString())
+                    getUserProfilePic()
+
+                    // if(photoURL?.isNotEmpty() == true) {
+                    //     Picasso.get().load(photoURL).placeholder(R.drawable.good_food).into(binding.photo)
+                   // Picasso.with(this).load(imageUri).into(profilPic)
+                // }
 
                     }
 
@@ -219,6 +216,7 @@ class AccountActivity : AppCompatActivity() {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
         startActivityForResult(intent, CAPTURE_PHOTO)
         }
+
     private fun openGallery(){
         val intent = Intent(Intent.ACTION_PICK))
         intent.type = "image/*"
