@@ -50,9 +50,54 @@ class AccountActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val user = Firebase.auth.currentUser
+        val database = Firebase.database
+        user?.let {
+            showProgressBar()
+            //val photoUrl = user.photoUrl
 
-        auth = FirebaseAuth.getInstance()
-        uid = auth.currentUser?.uid.toString()
+            uid = it.uid
+            val userRef = database.getReference(uid)
+            // Read from the database
+            userRef.addValueEventListener(object : ValueEventListener {
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+
+                    // val photoURL = snapshot.child("profilPicURL").value
+                    val firstName = snapshot.child("name").value
+                    val lastName = snapshot.child("surname").value
+                    val phoneNumber = snapshot.child("phoneNum").value
+                    val photoURL= snapshot.child("profilPicURL").value
+                    val location = snapshot.child("location").value
+
+                    binding.userFirstName.setText(firstName.toString())
+                    binding.userLastname.setText(lastName.toString())
+                    binding.userPhoneNumber.setText(phoneNumber.toString())
+                    binding.userEmail.setText(Firebase.auth.currentUser?.email.toString())
+                    // binding.profilPic.setImageDrawable(photoURL as Drawable?)
+                    binding.userLocation.setText(location.toString())
+                    getUserProfilePic()
+
+                    // if(photoURL?.isNotEmpty() == true) {
+                    //     Picasso.get().load(photoURL).placeholder(R.drawable.good_food).into(binding.photo)
+                    // Picasso.with(this).load(imageUri).into(profilPic)
+                    // }
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    hideProgressBar()
+                    Log.w(TAG, "Failed to read value.", error.toException())
+                    Toast.makeText( this@AccountActivity,"Failed to get Profile Data",Toast.LENGTH_SHORT).show()
+
+
+                }
+
+            })
+
+        }
         binding.profilPic.setOnClickListener{
             //check permission at runtime
            /* val checkSelfPermission = ContextCompat.checkSelfPermission(this,
@@ -70,54 +115,9 @@ class AccountActivity : AppCompatActivity() {
 
 
 
-            val user = Firebase.auth.currentUser
-            val database = Firebase.database
-
-        user?.let {
-             showProgressBar()
-            //val photoUrl = user.photoUrl
-
-            val uid = user.uid
-            val userRef = database.getReference(uid)
-            // Read from the database
-            userRef.addValueEventListener(object : ValueEventListener {
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
-
-                   // val photoURL = snapshot.child("profilPicURL").value
-                    val firstName = snapshot.child("name").value
-                    val lastName = snapshot.child("surname").value
-                    val phoneNumber = snapshot.child("phoneNum").value
-                    val photoURL= snapshot.child("profilPicURL").value
-                    val location = snapshot.child("location").value
-
-                    binding.userFirstName.setText(firstName.toString())
-                    binding.userLastname.setText(lastName.toString())
-                    binding.userPhoneNumber.setText(phoneNumber.toString())
-                    binding.userEmail.setText(Firebase.auth.currentUser?.email.toString())
-                    binding.userLocation.setText(location.toString())
-                    getUserProfilePic()
-
-                    // if(photoURL?.isNotEmpty() == true) {
-                    //     Picasso.get().load(photoURL).placeholder(R.drawable.good_food).into(binding.photo)
-                   // Picasso.with(this).load(imageUri).into(profilPic)
-                // }
-
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        hideProgressBar()
-                        Log.w(TAG, "Failed to read value.", error.toException())
-                        Toast.makeText( this@AccountActivity,"Failed to get Profile Data",Toast.LENGTH_SHORT).show()
 
 
-                    }
 
-                })
-
-            }
 
             if (user != null) {
                 // User is signed in
@@ -288,7 +288,7 @@ class AccountActivity : AppCompatActivity() {
     private fun showProgressBar(){
         dialog = Dialog(this@AccountActivity)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-       // dialog.setContentView(R.layout.wait)
+        //dialog.setContentView(R.layout.wait)
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
     }
@@ -299,5 +299,72 @@ class AccountActivity : AppCompatActivity() {
 
 
 
+// User is signed in
+//   databaseReference.child(uid).setValue(user).addOnCompleteListener {
+//       if (it.isSuccessful) {
+//           uploadProfile()
+//     } else {
+//         hideProgressBar()
+//        Toast.makeText(
+//            this@AccountActivity,
+//            "Failed to update profile",
+//             Toast.LENGTH_SHORT
+//          ).show()
+//      }
+//   }
 
 
+//send email verif
+// user!!.sendEmailVerification()
+//     .addOnCompleteListener { task ->
+//         if (task.isSuccessful) {
+//              Log.d(TAG, "Email sent.")
+//         }
+//      }
+//update password
+// user!!.updatePassword(userNewPassword)
+//   .addOnCompleteListener { task ->
+//       if (task.isSuccessful) {
+//          Log.d(TAG, "User password updated.")
+//       }
+//   }
+
+//send an email to reset password !!!!Mot de passe oublié
+// Firebase.auth.sendPasswordResetEmail(email)
+//     .addOnCompleteListener { task ->
+//         if (task.isSuccessful) {
+//            Log.d(TAG, "Email sent.")
+//       }
+//   }
+//uploadProfile()
+
+
+
+
+//  val capturedImage = File(externalCacheDir, "My_Captured_Photo.jpg")
+// if(capturedImage.exists()) {
+//        capturedImage.delete()
+//     }
+// capturedImage.createNewFile()
+//  imageUri = if(Build.VERSION.SDK_INT >= 24){
+//      FileProvider.getUriForFile(this, "info.camposha.kimagepicker.fileprovider",
+//          capturedImage)
+//  } else {
+//          Uri.fromFile(capturedImage)
+//  }
+
+
+/*private fun uploadProfile(){
+
+    //imageUri=Uri.parse("android.resource://$packageName/${R.drawable.profile}")
+    storageReference= FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid)
+    imageUri=data.getData();
+    storageReference.putFile(imageUri).addOnSuccessListener {
+        hideProgressBar()
+        Toast.makeText(this@AccountActivity, "Profile succesfuly updated",Toast.LENGTH_SHORT).show()
+    }.addOnFailureListener{
+        hideProgressBar()
+        Toast.makeText(this@AccountActivity, "Failed to update the image",Toast.LENGTH_SHORT).show()
+    }
+
+}*/
