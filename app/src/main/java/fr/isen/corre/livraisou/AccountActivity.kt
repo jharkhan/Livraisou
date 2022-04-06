@@ -50,13 +50,14 @@ class AccountActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        
         auth = FirebaseAuth.getInstance()
         val database = Firebase.database
         val user = Firebase.auth.currentUser
         user?.let {
             //showProgressBar()
             //val photoUrl = user.photoUrl
+            uid = it.uid
             val userRef = database.getReference(uid)
             // Read from the database
             userRef.addValueEventListener(object : ValueEventListener {
@@ -78,7 +79,7 @@ class AccountActivity : AppCompatActivity() {
                     binding.userEmail.setText(Firebase.auth.currentUser?.email.toString())
                     // binding.profilPic.setImageDrawable(photoURL as Drawable?)
                     binding.userLocation.setText(location.toString())
-                   // getUserProfilePic()
+                  
 
                     // if(photoURL?.isNotEmpty() == true) {
                     //     Picasso.get().load(photoURL).placeholder(R.drawable.good_food).into(binding.photo)
@@ -90,25 +91,15 @@ class AccountActivity : AppCompatActivity() {
                 override fun onCancelled(error: DatabaseError) {
                     //hideProgressBar()
                     Log.w(TAG, "Failed to read value.", error.toException())
-                    Toast.makeText( this@AccountActivity,"Failed to get Profile Data",Toast.LENGTH_SHORT).show()
-
 
                 }
-
 
             })
             binding.btnSave.setOnClickListener {
                 userRef.setValue(User(binding.userFirstName.text.toString(), binding.userLastname.text.toString(), binding.userPhoneNumber.text.toString(),binding.userLocation.text.toString()))
-
-
-                val user = Firebase.auth.currentUser
-                val database = Firebase.database
-
             }
-
-
         }
-
+        getUserProfilePic()
         binding.profilPic.setOnClickListener{
             //check permission at runtime
            /* val checkSelfPermission = ContextCompat.checkSelfPermission(this,
@@ -130,11 +121,11 @@ class AccountActivity : AppCompatActivity() {
 
     private fun getUserProfilePic(){
 
-        storageReference= FirebaseStorage.getInstance().getReference("Users/$uid.jpg")
+        storageReference= FirebaseStorage.getInstance().getReference("profilPic/timon.jpg")
         val localFile = File.createTempFile("tempImage","jpg")
         storageReference.getFile(localFile).addOnSuccessListener{
-           // val bitmap= BitmapFactory.decodeFile(localFile.absolutePath)
-           // binding.profilPic.setImageBitmap(bitmap)
+           val bitmap= BitmapFactory.decodeFile(localFile.absolutePath)
+           binding.profilPic.setImageBitmap(bitmap)
             hideProgressBar()
         }.addOnFailureListener{
             hideProgressBar()
