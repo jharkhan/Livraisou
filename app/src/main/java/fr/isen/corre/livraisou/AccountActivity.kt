@@ -173,7 +173,7 @@ class AccountActivity : AppCompatActivity() {
 
         //imageUri=Uri.parse("android.resource://$packageName/${R.drawable.profile}")
         storageReference= FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid)
-        imageUri=data.getData();
+       // imageUri=data.getData();
         storageReference.putFile(imageUri).addOnSuccessListener {
             hideProgressBar()
             Toast.makeText(this@AccountActivity, "Profile succesfuly updated",Toast.LENGTH_SHORT).show()
@@ -186,11 +186,13 @@ class AccountActivity : AppCompatActivity() {
 
     private fun getUserProfilePic(){
 
-        storageReference= FirebaseStorage.getInstance().getReference("Users/$uid.jpg")
+        //storageReference= FirebaseStorage.getInstance().getReference("Users/$uid.jpg")
+        storageReference= FirebaseStorage.getInstance().getReference().child("profilPic/timon.jpg")
         val localFile = File.createTempFile("tempImage","jpg")
         storageReference.getFile(localFile).addOnSuccessListener{
-           // val bitmap= BitmapFactory.decodeFile(localFile.absolutePath)
-           // binding.profilPic.setImageBitmap(bitmap)
+            val bitmap= BitmapFactory.decodeFile(localFile.absolutePath)
+            binding.profilPic.setImageBitmap(bitmap)
+            Toast.makeText( this@AccountActivity,"Picture Retrieved",Toast.LENGTH_SHORT).show()
             hideProgressBar()
         }.addOnFailureListener{
             hideProgressBar()
@@ -273,7 +275,7 @@ class AccountActivity : AppCompatActivity() {
     private fun showProgressBar(){
         dialog = Dialog(this@AccountActivity)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.wait)
+       // dialog.setContentView(R.layout.wait)
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
     }
