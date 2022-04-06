@@ -50,13 +50,12 @@ class AccountActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
-        auth = FirebaseAuth.getInstance()
-        val database = Firebase.database
         val user = Firebase.auth.currentUser
+        val database = Firebase.database
         user?.let {
-            //showProgressBar()
+            showProgressBar()
             //val photoUrl = user.photoUrl
+
             uid = it.uid
             val userRef = database.getReference(uid)
             // Read from the database
@@ -70,7 +69,7 @@ class AccountActivity : AppCompatActivity() {
                     val firstName = snapshot.child("name").value
                     val lastName = snapshot.child("surname").value
                     val phoneNumber = snapshot.child("phoneNum").value
-                   // val photoURL= snapshot.child("profilPicURL").value
+                    val photoURL= snapshot.child("profilPicURL").value
                     val location = snapshot.child("location").value
 
                     binding.userFirstName.setText(firstName.toString())
@@ -79,7 +78,7 @@ class AccountActivity : AppCompatActivity() {
                     binding.userEmail.setText(Firebase.auth.currentUser?.email.toString())
                     // binding.profilPic.setImageDrawable(photoURL as Drawable?)
                     binding.userLocation.setText(location.toString())
-                  
+                    getUserProfilePic()
 
                     // if(photoURL?.isNotEmpty() == true) {
                     //     Picasso.get().load(photoURL).placeholder(R.drawable.good_food).into(binding.photo)
@@ -89,17 +88,16 @@ class AccountActivity : AppCompatActivity() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    //hideProgressBar()
+                    hideProgressBar()
                     Log.w(TAG, "Failed to read value.", error.toException())
+                    Toast.makeText( this@AccountActivity,"Failed to get Profile Data",Toast.LENGTH_SHORT).show()
+
 
                 }
 
             })
-            binding.btnSave.setOnClickListener {
-                userRef.setValue(User(binding.userFirstName.text.toString(), binding.userLastname.text.toString(), binding.userPhoneNumber.text.toString(),binding.userLocation.text.toString()))
-            }
+
         }
-        //getUserProfilePic()
         binding.profilPic.setOnClickListener{
             //check permission at runtime
            /* val checkSelfPermission = ContextCompat.checkSelfPermission(this,
@@ -110,22 +108,69 @@ class AccountActivity : AppCompatActivity() {
             }
             else{*/
                 openGalleryOrTakePic()
+
            // }
 
         }
+        binding.btnSave.setOnClickListener {
 
 
+
+
+
+
+
+            if (user != null) {
+                // User is signed in
+             //   databaseReference.child(uid).setValue(user).addOnCompleteListener {
+             //       if (it.isSuccessful) {
+             //           uploadProfile()
+               //     } else {
+               //         hideProgressBar()
+                //        Toast.makeText(
+                //            this@AccountActivity,
+                //            "Failed to update profile",
+               //             Toast.LENGTH_SHORT
+              //          ).show()
+              //      }
+             //   }
+
+                uploadProfilPic()
+            } else {
+                // No user is signed in
+                Toast.makeText(
+                    baseContext, "Authentication failed.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
 
 
+    private fun uploadProfilPic(){
+       // storageReference= FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid)
+        storageReference= FirebaseStorage.getInstance().getReference().child("profilPic/$uid.jpg")
+        imageUri?.let {
+            storageReference.putFile(it).addOnSuccessListener {
+                hideProgressBar()
+                Toast.makeText(this@AccountActivity, "Profile succesfuly updated",Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener{
+                hideProgressBar()
+                Toast.makeText(this@AccountActivity, "Failed to update the image",Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    }
 
     private fun getUserProfilePic(){
 
-        storageReference= FirebaseStorage.getInstance().getReference("profilPic/timon.jpg")
-        val localFile = File.createTempFile("tempImage","jpg")
+        //storageReference= FirebaseStorage.getInstance().getReference("Users/$uid.jpg")
+        storageReference= FirebaseStorage.getInstance().getReference().child("profilPic/$uid.jpg")
+        val localFile = File.createTempFile("tempImage",".jpg")
         storageReference.getFile(localFile).addOnSuccessListener{
-           val bitmap= BitmapFactory.decodeFile(localFile.absolutePath)
-           binding.profilPic.setImageBitmap(bitmap)
+            val bitmap= BitmapFactory.decodeFile(localFile.absolutePath)
+            binding.profilPic.setImageBitmap(bitmap)
+            Toast.makeText( this@AccountActivity,"Picture Retrieved",Toast.LENGTH_SHORT).show()
             hideProgressBar()
         }.addOnFailureListener{
             hideProgressBar()
@@ -133,9 +178,37 @@ class AccountActivity : AppCompatActivity() {
         }
 
     }
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode== CHOOSE_PHOTO && resultCode== RESULT_OK && data !=null){
+            imageUri=data.getData()
+            binding.profilPic.setImageURI(imageUri)
+            Toast.makeText( this@AccountActivity,"Picture Retrieved",Toast.LENGTH_SHORT).show()
+            }
+        else{
+            Toast.makeText( this@AccountActivity,"Failed to retrieve image",Toast.LENGTH_SHORT).show()
+        }
+        if(requestCode== CAPTURE_PHOTO && resultCode== RESULT_OK && data !=null){
+            imageUri=data.getData()
+            binding.profilPic.setImageURI(imageUri)
+            Toast.makeText( this@AccountActivity,"Picture Retrieved",Toast.LENGTH_SHORT).show()
+        }
+        else{
+            Toast.makeText( this@AccountActivity,"Failed to retrieve image",Toast.LENGTH_SHORT).show()
+        }
+    }
     private fun capturePhoto(){
+      /* val capturedImage = File(externalCacheDir, "Captured_profilPic.jpg")
+       if(capturedImage.exists()) {
+           capturedImage.delete()
+       }
+        capturedImage.createNewFile()
 
+        imageUri = if(Build.VERSION.SDK_INT >= 24){
+            FileProvider.getUriForFile(this, imageUri.toString(),capturedImage)
+        } else {
+            Uri.fromFile(capturedImage)
+        }*/
 
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
@@ -143,10 +216,11 @@ class AccountActivity : AppCompatActivity() {
         }
 
     private fun openGallery(){
-        val intent = Intent(Intent.ACTION_PICK)
+        val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         intent.type = "image/*"
         startActivityForResult(intent, CHOOSE_PHOTO)
     }
+
     companion object {
         private val CHOOSE_PHOTO= 1000;
         private val PERMISSION_CODE = 1001;
@@ -168,15 +242,6 @@ class AccountActivity : AppCompatActivity() {
         }
     }
 
-    private fun renderImage(imagePath: String?){
-        if (imagePath != null) {
-            val bitmap = BitmapFactory.decodeFile(imagePath)
-            binding.profilPic.setImageBitmap(bitmap)
-        }
-        else {
-            Toast.makeText(this,"ImagePath is null",Toast.LENGTH_SHORT).show()
-        }
-    }
     private fun openGalleryOrTakePic() {
         val alertDialog: AlertDialog = AlertDialog.Builder(this).create()
         alertDialog.setTitle("Chosissez une photo")
@@ -198,7 +263,7 @@ class AccountActivity : AppCompatActivity() {
     private fun showProgressBar(){
         dialog = Dialog(this@AccountActivity)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        //dialog.setContentView(R.layout.wait)
+       // dialog.setContentView(R.layout.wait)
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
     }

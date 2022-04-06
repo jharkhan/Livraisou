@@ -116,9 +116,11 @@ class ProfileFragment : Fragment() {
         val firstName = dataSnapshot.child("surname").value
         val lastName = dataSnapshot.child("name").value
         val phoneNumber = dataSnapshot.child("phoneNum").value
+        val adress = dataSnapshot.child("location").value
         binding.userName.setText(firstName.toString())
         binding.userLastname.setText(lastName.toString())
         binding.userPhone.setText(phoneNumber.toString())
         binding.userEmail.setText(user.email.toString())
+        binding.userAddress.setText(adress.toString())
     }
 }
