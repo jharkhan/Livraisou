@@ -108,6 +108,7 @@ class AccountActivity : AppCompatActivity() {
             }
             else{*/
                 openGalleryOrTakePic()
+
            // }
 
         }
@@ -148,7 +149,7 @@ class AccountActivity : AppCompatActivity() {
 
     private fun uploadProfilPic(){
        // storageReference= FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid)
-        storageReference= FirebaseStorage.getInstance().getReference().child("profilPic/userPic.jpg")
+        storageReference= FirebaseStorage.getInstance().getReference().child("profilPic/$uid.jpg")
         imageUri?.let {
             storageReference.putFile(it).addOnSuccessListener {
                 hideProgressBar()
@@ -164,7 +165,7 @@ class AccountActivity : AppCompatActivity() {
     private fun getUserProfilePic(){
 
         //storageReference= FirebaseStorage.getInstance().getReference("Users/$uid.jpg")
-        storageReference= FirebaseStorage.getInstance().getReference().child("profilPic/timon.jpg")
+        storageReference= FirebaseStorage.getInstance().getReference().child("profilPic/$uid.jpg")
         val localFile = File.createTempFile("tempImage",".jpg")
         storageReference.getFile(localFile).addOnSuccessListener{
             val bitmap= BitmapFactory.decodeFile(localFile.absolutePath)
@@ -179,24 +180,35 @@ class AccountActivity : AppCompatActivity() {
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode== RESULT_OK && data !=null){
+        if(requestCode== CHOOSE_PHOTO && resultCode== RESULT_OK && data !=null){
             imageUri=data.getData()
             binding.profilPic.setImageURI(imageUri)
+            Toast.makeText( this@AccountActivity,"Picture Retrieved",Toast.LENGTH_SHORT).show()
+            }
+        else{
+            Toast.makeText( this@AccountActivity,"Failed to retrieve image",Toast.LENGTH_SHORT).show()
+        }
+        if(requestCode== CAPTURE_PHOTO && resultCode== RESULT_OK && data !=null){
+            imageUri=data.getData()
+            binding.profilPic.setImageURI(imageUri)
+            Toast.makeText( this@AccountActivity,"Picture Retrieved",Toast.LENGTH_SHORT).show()
+        }
+        else{
+            Toast.makeText( this@AccountActivity,"Failed to retrieve image",Toast.LENGTH_SHORT).show()
         }
     }
     private fun capturePhoto(){
-     //  val capturedImage = File(externalCacheDir, "Captured_profilPic$uid.jpg")
-    //   if(capturedImage.exists()) {
-      //          capturedImage.delete()
-     //      }
-      //  capturedImage.createNewFile()
+      /* val capturedImage = File(externalCacheDir, "Captured_profilPic.jpg")
+       if(capturedImage.exists()) {
+           capturedImage.delete()
+       }
+        capturedImage.createNewFile()
 
-      //  imageUri = if(Build.VERSION.SDK_INT >= 24){
-      //      FileProvider.getUriForFile(this, "info.camposha.kimagepicker.fileprovider",
-      //          capturedImage)
-      //  } else {
-      //          Uri.fromFile(capturedImage)
-      //  }
+        imageUri = if(Build.VERSION.SDK_INT >= 24){
+            FileProvider.getUriForFile(this, imageUri.toString(),capturedImage)
+        } else {
+            Uri.fromFile(capturedImage)
+        }*/
 
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
@@ -230,15 +242,6 @@ class AccountActivity : AppCompatActivity() {
         }
     }
 
-    private fun renderImage(imagePath: String?){
-        if (imagePath != null) {
-            val bitmap = BitmapFactory.decodeFile(imagePath)
-            binding.profilPic.setImageBitmap(bitmap)
-        }
-        else {
-            Toast.makeText(this,"ImagePath is null",Toast.LENGTH_SHORT).show()
-        }
-    }
     private fun openGalleryOrTakePic() {
         val alertDialog: AlertDialog = AlertDialog.Builder(this).create()
         alertDialog.setTitle("Chosissez une photo")
@@ -260,7 +263,7 @@ class AccountActivity : AppCompatActivity() {
     private fun showProgressBar(){
         dialog = Dialog(this@AccountActivity)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        //dialog.setContentView(R.layout.wait)
+       // dialog.setContentView(R.layout.wait)
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
     }
