@@ -55,7 +55,7 @@ class AccountActivity : AppCompatActivity() {
         val database = Firebase.database
         val user = Firebase.auth.currentUser
         user?.let {
-            showProgressBar()
+            //showProgressBar()
             //val photoUrl = user.photoUrl
             val userRef = database.getReference(uid)
             // Read from the database
@@ -69,7 +69,7 @@ class AccountActivity : AppCompatActivity() {
                     val firstName = snapshot.child("name").value
                     val lastName = snapshot.child("surname").value
                     val phoneNumber = snapshot.child("phoneNum").value
-                    val photoURL= snapshot.child("profilPicURL").value
+                   // val photoURL= snapshot.child("profilPicURL").value
                     val location = snapshot.child("location").value
 
                     binding.userFirstName.setText(firstName.toString())
@@ -78,7 +78,7 @@ class AccountActivity : AppCompatActivity() {
                     binding.userEmail.setText(Firebase.auth.currentUser?.email.toString())
                     // binding.profilPic.setImageDrawable(photoURL as Drawable?)
                     binding.userLocation.setText(location.toString())
-                    getUserProfilePic()
+                   // getUserProfilePic()
 
                     // if(photoURL?.isNotEmpty() == true) {
                     //     Picasso.get().load(photoURL).placeholder(R.drawable.good_food).into(binding.photo)
@@ -88,7 +88,7 @@ class AccountActivity : AppCompatActivity() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    hideProgressBar()
+                    //hideProgressBar()
                     Log.w(TAG, "Failed to read value.", error.toException())
                     Toast.makeText( this@AccountActivity,"Failed to get Profile Data",Toast.LENGTH_SHORT).show()
 
@@ -104,54 +104,6 @@ class AccountActivity : AppCompatActivity() {
                 val user = Firebase.auth.currentUser
                 val database = Firebase.database
 
-
-
-                if (user != null) {
-                    // User is signed in
-                    //   databaseReference.child(uid).setValue(user).addOnCompleteListener {
-                    //       if (it.isSuccessful) {
-                    //           uploadProfile()
-                    //     } else {
-                    //         hideProgressBar()
-                    //        Toast.makeText(
-                    //            this@AccountActivity,
-                    //            "Failed to update profile",
-                    //             Toast.LENGTH_SHORT
-                    //          ).show()
-                    //      }
-                    //   }
-
-
-                    //send email verif
-                    // user!!.sendEmailVerification()
-                    //     .addOnCompleteListener { task ->
-                    //         if (task.isSuccessful) {
-                    //              Log.d(TAG, "Email sent.")
-                    //         }
-                    //      }
-                    //update password
-                    // user!!.updatePassword(userNewPassword)
-                    //   .addOnCompleteListener { task ->
-                    //       if (task.isSuccessful) {
-                    //          Log.d(TAG, "User password updated.")
-                    //       }
-                    //   }
-
-                    //send an email to reset password !!!!Mot de passe oublié
-                    // Firebase.auth.sendPasswordResetEmail(email)
-                    //     .addOnCompleteListener { task ->
-                    //         if (task.isSuccessful) {
-                    //            Log.d(TAG, "Email sent.")
-                    //       }
-                    //   }
-                    //uploadProfile()
-                } else {
-                    // No user is signed in
-                    Toast.makeText(
-                        baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
             }
 
 
@@ -174,20 +126,7 @@ class AccountActivity : AppCompatActivity() {
 
     }
 
-    /*private fun uploadProfile(){
 
-        //imageUri=Uri.parse("android.resource://$packageName/${R.drawable.profile}")
-        storageReference= FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid)
-        imageUri=data.getData();
-        storageReference.putFile(imageUri).addOnSuccessListener {
-            hideProgressBar()
-            Toast.makeText(this@AccountActivity, "Profile succesfuly updated",Toast.LENGTH_SHORT).show()
-        }.addOnFailureListener{
-            hideProgressBar()
-            Toast.makeText(this@AccountActivity, "Failed to update the image",Toast.LENGTH_SHORT).show()
-        }
-
-    }*/
 
     private fun getUserProfilePic(){
 
@@ -205,17 +144,7 @@ class AccountActivity : AppCompatActivity() {
     }
 
     private fun capturePhoto(){
-      //  val capturedImage = File(externalCacheDir, "My_Captured_Photo.jpg")
-       // if(capturedImage.exists()) {
-        //        capturedImage.delete()
-       //     }
-       // capturedImage.createNewFile()
-      //  imageUri = if(Build.VERSION.SDK_INT >= 24){
-      //      FileProvider.getUriForFile(this, "info.camposha.kimagepicker.fileprovider",
-      //          capturedImage)
-      //  } else {
-      //          Uri.fromFile(capturedImage)
-      //  }
+
 
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
@@ -289,5 +218,72 @@ class AccountActivity : AppCompatActivity() {
 
 
 
+// User is signed in
+//   databaseReference.child(uid).setValue(user).addOnCompleteListener {
+//       if (it.isSuccessful) {
+//           uploadProfile()
+//     } else {
+//         hideProgressBar()
+//        Toast.makeText(
+//            this@AccountActivity,
+//            "Failed to update profile",
+//             Toast.LENGTH_SHORT
+//          ).show()
+//      }
+//   }
 
 
+//send email verif
+// user!!.sendEmailVerification()
+//     .addOnCompleteListener { task ->
+//         if (task.isSuccessful) {
+//              Log.d(TAG, "Email sent.")
+//         }
+//      }
+//update password
+// user!!.updatePassword(userNewPassword)
+//   .addOnCompleteListener { task ->
+//       if (task.isSuccessful) {
+//          Log.d(TAG, "User password updated.")
+//       }
+//   }
+
+//send an email to reset password !!!!Mot de passe oublié
+// Firebase.auth.sendPasswordResetEmail(email)
+//     .addOnCompleteListener { task ->
+//         if (task.isSuccessful) {
+//            Log.d(TAG, "Email sent.")
+//       }
+//   }
+//uploadProfile()
+
+
+
+
+//  val capturedImage = File(externalCacheDir, "My_Captured_Photo.jpg")
+// if(capturedImage.exists()) {
+//        capturedImage.delete()
+//     }
+// capturedImage.createNewFile()
+//  imageUri = if(Build.VERSION.SDK_INT >= 24){
+//      FileProvider.getUriForFile(this, "info.camposha.kimagepicker.fileprovider",
+//          capturedImage)
+//  } else {
+//          Uri.fromFile(capturedImage)
+//  }
+
+
+/*private fun uploadProfile(){
+
+    //imageUri=Uri.parse("android.resource://$packageName/${R.drawable.profile}")
+    storageReference= FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid)
+    imageUri=data.getData();
+    storageReference.putFile(imageUri).addOnSuccessListener {
+        hideProgressBar()
+        Toast.makeText(this@AccountActivity, "Profile succesfuly updated",Toast.LENGTH_SHORT).show()
+    }.addOnFailureListener{
+        hideProgressBar()
+        Toast.makeText(this@AccountActivity, "Failed to update the image",Toast.LENGTH_SHORT).show()
+    }
+
+}*/
