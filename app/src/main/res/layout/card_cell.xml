@@ -7,12 +7,14 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="15dp"
         android:layout_margin="10dp"
         android:clickable="true"
-        app:cardElevation="7dp">
+        app:cardElevation="7dp"
+        android:focusable="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,14 +27,15 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:gravity="center"
-                android:src="@drawable/ic_baseline_home_24" />
+                android:src="@drawable/ic_baseline_home_24"
+                android:contentDescription="shopImage" />
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Title"
+                tools:text="Title"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
@@ -42,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="description"
+                tools:text="description"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="normal" />

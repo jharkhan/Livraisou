@@ -14,7 +14,7 @@ class ShopDetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentShopDetailBinding.inflate(layoutInflater)
         return binding.root
@@ -24,6 +24,8 @@ class ShopDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
     }
+
+
 
 
 }

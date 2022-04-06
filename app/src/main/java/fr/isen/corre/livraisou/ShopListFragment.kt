@@ -16,7 +16,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import fr.isen.corre.livraisou.databinding.FragmentShopListBinding
 
-class ShopListFragment : Fragment() {
+class ShopListFragment : Fragment(), ShopClickListener {
     private  lateinit var binding: FragmentShopListBinding
     val TAG = "ShopListFragment"
     override fun onCreateView(
@@ -31,10 +31,11 @@ class ShopListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Firebase.database
         fillList()
+        val activity = this
         binding.recyclerView.apply {
             layoutManager = GridLayoutManager(context, 1)
-            adapter = CardAdapter(shopList, this)
-            val currentShop = shopList
+            adapter = CardAdapter(shopList, activity)
+
             this.setOnClickListener {
                 showDetails()
             }
@@ -101,5 +102,14 @@ class ShopListFragment : Fragment() {
 
         })
     }
+
+    override fun onClick(shop: Shop) {
+        Log.d(TAG, " shop : $shop")
+        Log.d(TAG, " shop test")
+        val intent = Intent(context, ShopDetailsActivity::class.java)
+        intent.putExtra(SHOP_ID_EXTRA, shop.title)
+        startActivity(intent)
+    }
+
 
 }

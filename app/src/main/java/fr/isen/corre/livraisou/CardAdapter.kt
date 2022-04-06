@@ -7,14 +7,14 @@ import fr.isen.corre.livraisou.databinding.CardCellBinding
 
 class CardAdapter(
     private val shops: List<Shop>,
-    private val clickListener: RecyclerView
+    private val clickListener: ShopClickListener
 ) : RecyclerView.Adapter<CardViewHolder>()
 
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val from = LayoutInflater.from(parent.context)
         val binding = CardCellBinding.inflate(from, parent, false)
-        return CardViewHolder(binding)
+        return CardViewHolder(binding, clickListener)
     }
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         holder.bindHook(shops[position])

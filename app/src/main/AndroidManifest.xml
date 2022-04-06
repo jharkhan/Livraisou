@@ -60,6 +60,9 @@
             android:name=".BasketActivity"
             android:exported="false" />
         <activity
+            android:name=".ShopDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
