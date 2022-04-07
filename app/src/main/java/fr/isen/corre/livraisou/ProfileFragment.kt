@@ -18,6 +18,17 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import fr.isen.corre.livraisou.databinding.FragmentProfileBinding
 
+
+
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
+
+/**
+ * A simple [Fragment] subclass.
+ * Use the [ProfileFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
 class ProfileFragment : Fragment() {
     private  lateinit var binding: FragmentProfileBinding
     val TAG = "ProfileFragment"
@@ -116,11 +127,11 @@ class ProfileFragment : Fragment() {
         val firstName = dataSnapshot.child("surname").value
         val lastName = dataSnapshot.child("name").value
         val phoneNumber = dataSnapshot.child("phoneNum").value
-        val adress = dataSnapshot.child("location").value
+        val address = dataSnapshot.child("location").value
         binding.userName.setText(firstName.toString())
         binding.userLastname.setText(lastName.toString())
         binding.userPhone.setText(phoneNumber.toString())
         binding.userEmail.setText(user.email.toString())
-        binding.userAddress.setText(adress.toString())
+        binding.userAddress.setText(address.toString())
     }
 }
