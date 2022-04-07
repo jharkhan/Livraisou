@@ -1,16 +1,10 @@
-package fr.isen.corre.livraisou.product
+package fr.isen.corre.livraisou
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import fr.isen.corre.livraisou.Product
-import com.google.firebase.database.DatabaseReference
-import fr.isen.corre.livraisou.R
 
 class ProductAdapter(private val mList: List<Product>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 

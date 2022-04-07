@@ -1,57 +1,63 @@
 package fr.isen.corre.livraisou
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
-import fr.isen.corre.livraisou.product.ProductAdapter
-
+import com.google.firebase.database.ktx.getValue
 
 
 class ProductsDECOActivity : AppCompatActivity() {
-    private lateinit var dbref: DatabaseReference
-    private lateinit var productRecyclerview: RecyclerView
-    private lateinit var productArrayList: ArrayList<Product>
-
+    private lateinit var dbref : DatabaseReference
+    private lateinit var productRecyclerview : RecyclerView
+    private lateinit var productArrayList : ArrayList<Product>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_productlist)
 
-
         productRecyclerview = findViewById(R.id.productList)
         productRecyclerview.layoutManager = LinearLayoutManager(this)
         productRecyclerview.setHasFixedSize(true)
 
-        productArrayList = arrayListOf<Product>()
-        getproductData()
-        productRecyclerview.setAdapter(ProductAdapter(productArrayList))
+        productArrayList = arrayListOf()
+        getProductData()
+
     }
-    private fun getproductData() {
 
-        dbref = FirebaseDatabase.getInstance().getReference("produits/carrefour/deco")
+    private fun getProductData() {
 
-        dbref.addValueEventListener(object : ValueEventListener {
+        dbref = FirebaseDatabase.getInstance().getReference("Produits/carrefour/deco")
+
+        dbref.addValueEventListener(object : ValueEventListener{
 
             override fun onDataChange(snapshot: DataSnapshot) {
+
+
 
                 if (snapshot.exists()) {
 
                     for (productSnapshot in snapshot.children) {
 
 
-                        val product = productSnapshot.getValue(Product::class.java)
-                        productArrayList.add(product!!)
+                        val product = productSnapshot.value as? HashMap<String, String>
+                        if (product != null) {
+                            val prod = Product(product["nom"], product["prix"])
+                            product?.let { productArrayList.add(prod) }
 
+                        }
                     }
-
-
+                    productRecyclerview.adapter = ProductAdapter(productArrayList)
 
 
                 }
+
+
+
 
             }
 

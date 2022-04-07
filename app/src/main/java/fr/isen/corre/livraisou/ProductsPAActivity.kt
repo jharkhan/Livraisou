@@ -1,12 +1,10 @@
 package fr.isen.corre.livraisou
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
-import fr.isen.corre.livraisou.product.ProductAdapter
 
 
 class ProductsPAActivity : AppCompatActivity() {

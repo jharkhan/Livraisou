@@ -10,13 +10,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import fr.isen.corre.livraisou.R
-import fr.isen.corre.livraisou.product.ProductsActivity
+import fr.isen.corre.livraisou.ProductsDECOActivity
 import fr.isen.corre.livraisou.databinding.FragmentCategoriesBinding
-import fr.isen.corre.livraisou.shop.CardAdapter
-import fr.isen.corre.livraisou.shop.Shop
-import fr.isen.corre.livraisou.shop.ShopDetailsActivity
-import fr.isen.corre.livraisou.shop.shopList
 
 class CategoriesFragment : Fragment(), CategoryClickListener {
     private lateinit var binding: FragmentCategoriesBinding
@@ -47,7 +42,7 @@ class CategoriesFragment : Fragment(), CategoryClickListener {
     }
 
     private fun showProducts() {
-        val intent = Intent(context, ProductsActivity::class.java)
+        val intent = Intent(context, ProductsDECOActivity::class.java)
         startActivity(intent)
     }
 
@@ -77,7 +72,7 @@ class CategoriesFragment : Fragment(), CategoryClickListener {
     override fun onClick(category: Category) {
         Log.d(TAG, " category : $category")
         Log.d(TAG, " category test")
-        val intent = Intent(context, ProductsActivity::class.java)
+        val intent = Intent(context, ProductsDECOActivity::class.java)
         intent.putExtra(CATEGORY_EXTRA, category.title)
         startActivity(intent)
     }

@@ -23,15 +23,10 @@ import android.R
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.drawable.Drawable
-import android.icu.number.NumberFormatter.with
-import android.os.Build
+
 import android.provider.MediaStore
 import android.widget.ImageView
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
-import com.squareup.picasso.Picasso
+
 
 
 class AccountActivity : AppCompatActivity() {
