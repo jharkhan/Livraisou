@@ -199,6 +199,8 @@ class AccountActivity : AppCompatActivity() {
     }
 
     companion object {
+
+
         private val CHOOSE_PHOTO = 1000;
         private val PERMISSION_CODE = 1001;
     }
