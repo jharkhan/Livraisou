@@ -14,7 +14,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="56dp"
+        android:layout_marginEnd="25dp"
         android:hint="@string/password"
         app:hintAnimationEnabled="true"
         app:hintEnabled="true"
@@ -22,7 +22,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mail"
-        app:startIconDrawable="@drawable/ic_profil">
+        app:startIconDrawable="@drawable/ic_email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/userPassword"
@@ -39,7 +39,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="56dp"
+        android:layout_marginEnd="25dp"
         android:hint="@string/mail"
         app:hintAnimationEnabled="true"
         app:hintEnabled="true"
@@ -47,7 +47,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleLogin"
-        app:startIconDrawable="@drawable/ic_profil">
+        app:startIconDrawable="@drawable/ic_lock_password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/userMail"
