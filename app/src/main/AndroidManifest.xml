@@ -62,15 +62,11 @@
         <activity
             android:name=".PastOrdersActivity"
             android:exported="false" />
-        <activity
-            android:name=".ProductsActivity"
-            android:exported="false" />
+
         <activity
             android:name=".ProductsPDMActivity"
             android:exported="false" />
-        <activity
-            android:name=".category.CategoriesActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MapsActivity"
             android:exported="false"

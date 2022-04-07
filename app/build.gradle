@@ -6,7 +6,12 @@ plugins {
 }
 android {
     compileSdk 32
-
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
     defaultConfig {
         applicationId "fr.isen.corre.livraisou"
         minSdk 21
