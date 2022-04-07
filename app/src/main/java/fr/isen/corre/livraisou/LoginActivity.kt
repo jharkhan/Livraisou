@@ -6,17 +6,15 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import fr.isen.corre.livraisou.databinding.ActivityLoginBinding
 
 
-
 class LoginActivity : AppCompatActivity() {
     private  lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
-    val TAG = "LoginActivity"
+    val tag = "LoginActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -28,11 +26,6 @@ class LoginActivity : AppCompatActivity() {
         listenClick()
     }
 
-
-    private fun reload() {
-        TODO("Not yet implemented")
-    }
-
     private fun listenClick() {
         binding.buttonLogin.setOnClickListener {
             signIn()
@@ -40,10 +33,6 @@ class LoginActivity : AppCompatActivity() {
 
         binding.redirectRegister.setOnClickListener {
             changeActivityToRegister()
-        }
-
-        binding.btnWithoutAuth.setOnClickListener {
-            changeActivityToMain()
         }
     }
 
@@ -58,19 +47,23 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun signIn() {
-        binding.buttonLogin.setOnClickListener {
+        val mail = binding.userMail.text.toString()
+        val password = binding.userPassword.text.toString()
+        if (mail.isNotEmpty() && password.isNotEmpty()) {
             auth.signInWithEmailAndPassword(
-                binding.emailAddress.text.toString(),
-                binding.password.text.toString()
+                mail, password
+
             )
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithEmail:success")
+                        // Sign in success, update UI
+
+                        Log.d(tag, "signInWithEmail:success")
+
                         changeActivityToMain()
                     } else {
                         // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithEmail:failure", task.exception)
+                        Log.w(tag, "signInWithEmail:failure", task.exception)
                         Toast.makeText(
                             baseContext, "Authentication failed.",
                             Toast.LENGTH_SHORT
@@ -79,6 +72,9 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
         }
+        else
+            Toast.makeText(baseContext, "Veuillez saisir votre adresse mail et votre mot de passe", Toast.LENGTH_SHORT).show()
     }
+
 
 }
