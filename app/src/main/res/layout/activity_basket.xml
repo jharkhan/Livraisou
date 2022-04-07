@@ -25,12 +25,13 @@
         android:id="@+id/commander"
         android:layout_width="341dp"
         android:layout_height="98dp"
+        android:backgroundTint="#BF360C"
         android:text="@string/order"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:fontFamily="serif-monospace" />
+        tools:fontFamily="serif" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
