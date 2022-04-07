@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wallpaper3"
     tools:context=".ShopDetailsActivity">
 
     <ImageView
@@ -12,11 +13,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:adjustViewBounds="true"
+        android:contentDescription="shopImage"
         android:gravity="center"
         android:src="@drawable/ic_baseline_home_24"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp"
-        android:contentDescription="shopImage" />
+        tools:layout_editor_absoluteX="0dp" />
 
 
     <TextView

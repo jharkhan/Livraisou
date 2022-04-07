@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wallpaper3"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".AccountActivity">
@@ -25,12 +26,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edittext_lastname"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/last_name"
-        app:startIconDrawable="@drawable/ic_profil"
         app:layout_constraintTop_toBottomOf="@+id/profilPic"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        app:startIconDrawable="@drawable/ic_profil">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/userLastname"
             android:layout_width="match_parent"
@@ -38,14 +40,16 @@
             android:visibility="visible" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/userName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/first_name"
-        app:startIconDrawable="@drawable/ic_profil"
         app:layout_constraintTop_toBottomOf="@+id/edittext_lastname"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        app:startIconDrawable="@drawable/ic_profil">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/userFirstName"
             android:layout_width="match_parent"
@@ -53,29 +57,31 @@
             android:visibility="visible" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/userPhone"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/phone_number"
         app:layout_constraintTop_toBottomOf="@+id/userName"
-        app:startIconDrawable="@drawable/ic_phone"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        app:startIconDrawable="@drawable/ic_phone">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/userPhoneNumber"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edittext_mail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/mail"
         app:layout_constraintTop_toBottomOf="@+id/userPhone"
-        app:startIconDrawable="@drawable/ic_email"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        app:startIconDrawable="@drawable/ic_email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/userEmail"
@@ -86,15 +92,14 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edittext_addresse"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/location"
         app:layout_constraintTop_toBottomOf="@+id/edittext_mail"
-        app:startIconDrawable="@drawable/ic_location"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        app:startIconDrawable="@drawable/ic_location">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/userLocation"
