@@ -110,8 +110,8 @@
 
     <Button
         android:id="@+id/btnSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="411dp"
+        android:layout_height="60dp"
         android:layout_marginTop="44dp"
         android:backgroundTint="#890CBF"
         android:text="@string/btn_update"
