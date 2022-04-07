@@ -27,8 +27,8 @@ class ProductAdapter(private val mList: List<Product>) : RecyclerView.Adapter<Pr
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentitem = mList[position]
-        holder.nom.text = currentitem.nom
-        holder.prix.text = currentitem.prix
+        holder.nom.text = currentitem.name
+        holder.prix.text = currentitem.price
     }
 
     // return the number of the items in the list
