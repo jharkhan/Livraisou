@@ -63,7 +63,7 @@
             android:name=".PastOrdersActivity"
             android:exported="false" />
         <activity
-            android:name=".ProductsActivity"
+            android:name=".ProductsPDMActivity"
             android:exported="false" />
         <activity
             android:name=".CategoriesActivity"
@@ -93,6 +93,21 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+        <activity
+            android:name=".ProductsPAActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductsPNctivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductsVIANDEActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductsDECOActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductsFLActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
