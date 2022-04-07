@@ -67,6 +67,36 @@ class ShopDetailsActivity: AppCompatActivity() {
             changeActivityToDeco()
 
         }
+        binding.buttonPDM.setOnClickListener{
+            Log.d("test","test1322123")
+            Toast.makeText(this, "deco",  Toast.LENGTH_SHORT)
+            changeActivityToPDM()
+
+        }
+        binding.buttonPA.setOnClickListener{
+            Log.d("test","test1322123")
+            Toast.makeText(this, "deco",  Toast.LENGTH_SHORT)
+            changeActivityToPA()
+
+        }
+        binding.buttonPN.setOnClickListener{
+            Log.d("test","test1322123")
+            Toast.makeText(this, "deco",  Toast.LENGTH_SHORT)
+            changeActivityToPN()
+
+        }
+        binding.buttonFL.setOnClickListener{
+            Log.d("test","test1322123")
+            Toast.makeText(this, "deco",  Toast.LENGTH_SHORT)
+            changeActivityToFL()
+
+        }
+        binding.buttonViande.setOnClickListener{
+            Log.d("test","test1322123")
+            Toast.makeText(this, "deco",  Toast.LENGTH_SHORT)
+            changeActivityToVIANDE()
+
+        }
     }
 
 }
