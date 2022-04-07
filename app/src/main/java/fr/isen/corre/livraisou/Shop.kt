@@ -7,3 +7,4 @@ data class Shop(
     var cover: Int,
     var title: String,
     var description: String)
+
