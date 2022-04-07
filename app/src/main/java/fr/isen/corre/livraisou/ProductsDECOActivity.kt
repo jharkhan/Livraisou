@@ -12,25 +12,27 @@ import fr.isen.corre.livraisou.product.ProductAdapter
 
 class ProductsDECOActivity : AppCompatActivity() {
     private lateinit var dbref: DatabaseReference
-    private lateinit var userRecyclerview: RecyclerView
-    private lateinit var userArrayList: ArrayList<Product>
+    private lateinit var productRecyclerview: RecyclerView
+    private lateinit var productArrayList: ArrayList<Product>
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_productlist)
 
-        userRecyclerview = findViewById(R.id.productList)
-        userRecyclerview.layoutManager = LinearLayoutManager(this)
-        userRecyclerview.setHasFixedSize(true)
 
-        userArrayList = arrayListOf<Product>()
-        getUserData()
+        productRecyclerview = findViewById(R.id.productList)
+        productRecyclerview.layoutManager = LinearLayoutManager(this)
+        productRecyclerview.setHasFixedSize(true)
 
+        productArrayList = arrayListOf<Product>()
+        getproductData()
+        productRecyclerview.setAdapter(ProductAdapter(productArrayList))
     }
-    private fun getUserData() {
+    private fun getproductData() {
 
-        dbref = FirebaseDatabase.getInstance().getReference("produits/deco")
+        dbref = FirebaseDatabase.getInstance().getReference("produits/carrefour/deco")
 
         dbref.addValueEventListener(object : ValueEventListener {
 
@@ -38,15 +40,15 @@ class ProductsDECOActivity : AppCompatActivity() {
 
                 if (snapshot.exists()) {
 
-                    for (userSnapshot in snapshot.children) {
+                    for (productSnapshot in snapshot.children) {
 
 
-                        val product = userSnapshot.getValue(Product::class.java)
-                        userArrayList.add(product!!)
+                        val product = productSnapshot.getValue(Product::class.java)
+                        productArrayList.add(product!!)
 
                     }
 
-                    userRecyclerview.adapter = ProductAdapter(userArrayList)
+
 
 
                 }

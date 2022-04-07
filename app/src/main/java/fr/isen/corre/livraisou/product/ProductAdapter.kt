@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.corre.livraisou.Product
-import fr.isen.corre.livraisou.R
 import com.google.firebase.database.DatabaseReference
+import fr.isen.corre.livraisou.R
 
 class ProductAdapter(private val mList: List<Product>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
@@ -19,7 +19,7 @@ class ProductAdapter(private val mList: List<Product>) : RecyclerView.Adapter<Pr
         // inflates the card_view_design view
         // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_view_design, parent, false)
+            .inflate(R.layout.product_item, parent, false)
 
         return ViewHolder(view)
     }
