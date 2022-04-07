@@ -67,8 +67,8 @@ class ShopListFragment : Fragment(), ShopClickListener {
         )
         val monoprix = Shop(
             R.drawable.monoprix,
-            "Leclerc",
-            "leclerc"
+            "Monoprix",
+            "monoprix"
 
         )
         val shops = arrayOf(carrefour, casino, monoprix)
