@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.google.android.material.navigation.NavigationBarView
+import fr.isen.corre.livraisou.shop.ShopListFragment
 
 
 class MainActivity : AppCompatActivity() {

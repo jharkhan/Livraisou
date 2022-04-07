@@ -1,4 +1,4 @@
-package fr.isen.corre.livraisou
+package fr.isen.corre.livraisou.shop
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import fr.isen.corre.livraisou.R
 import fr.isen.corre.livraisou.databinding.FragmentShopListBinding
 
 class ShopListFragment : Fragment(), ShopClickListener {

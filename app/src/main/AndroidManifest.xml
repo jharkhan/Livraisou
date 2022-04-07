@@ -63,10 +63,13 @@
             android:name=".PastOrdersActivity"
             android:exported="false" />
         <activity
+            android:name=".product.ProductsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProductsPDMActivity"
             android:exported="false" />
         <activity
-            android:name=".CategoriesActivity"
+            android:name=".category.CategoriesActivity"
             android:exported="false" />
         <activity
             android:name=".MapsActivity"
@@ -76,7 +79,7 @@
             android:name=".BasketActivity"
             android:exported="false" />
         <activity
-            android:name=".ShopDetailsActivity"
+            android:name=".shop.ShopDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"

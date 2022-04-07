@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/wallpaper3"
-    tools:context=".ShopDetailsActivity">
+    tools:context=".shop.ShopDetailsActivity">
 
     <ImageView
         android:id="@+id/cover"

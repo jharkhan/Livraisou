@@ -1,4 +1,4 @@
-package fr.isen.corre.livraisou
+package fr.isen.corre.livraisou.shop
 
 import android.os.Bundle
 
