@@ -31,7 +31,8 @@ class ShopListFragment : Fragment(), ShopClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Firebase.database
-        fillList()
+        if(shopList.isEmpty())
+            fillList()
         val activity = this
         binding.recyclerView.apply {
             layoutManager = GridLayoutManager(context, 1)
@@ -53,55 +54,30 @@ class ShopListFragment : Fragment(), ShopClickListener {
 
 
         val carrefour = Shop(
-            R.drawable.ic_launcher_foreground,
+            R.drawable.carrefou_logo,
             "Carrefour",
             "carrefour"
 
         )
-        val auchan = Shop(
-            R.drawable.ic_launcher_foreground,
-            "auchan",
-            "auchan"
+        val casino = Shop(
+            R.drawable.casino_logo,
+            "Casino",
+            "casino"
 
         )
-        val leclerc = Shop(
-            R.drawable.ic_launcher_foreground,
-            "leclerc",
-            "leclerc"
+        val monoprix = Shop(
+            R.drawable.monoprix,
+            "Monoprix",
+            "monoprix"
 
         )
-        val geantCasino = Shop(
-            R.drawable.ic_launcher_foreground,
-            "géant casino",
-            "géant casino"
-
-        )
-        val shops = arrayOf(carrefour, leclerc, geantCasino, auchan)
+        val shops = arrayOf(carrefour, casino, monoprix)
 
         for (shop in shops)
         {
             shopList.add(shop)
         }
 
-    }
-
-
-    private fun getData(database: FirebaseDatabase,) {
-        val shopsRef = database.getReference()
-        // Read from the database
-        shopsRef.addValueEventListener(object: ValueEventListener {
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.w(TAG, "Failed to read value.", error.toException())
-            }
-
-        })
     }
 
     override fun onClick(shop: Shop) {

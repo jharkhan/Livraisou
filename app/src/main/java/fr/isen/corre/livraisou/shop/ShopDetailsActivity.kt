@@ -11,7 +11,6 @@ import fr.isen.corre.livraisou.databinding.ActivityDetailBinding
 
 class ShopDetailsActivity: AppCompatActivity() {
     private lateinit var  binding: ActivityDetailBinding
-    lateinit var shop : Shop
     val TAG = "ShopDetailsActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,11 +19,11 @@ class ShopDetailsActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         val shopName = intent.getStringExtra(SHOP_EXTRA)
-        shop = shopName?.let { shopFromName(it) }!!
+        val shop = shopName?.let {
+            shopFromName(it) }
         shop?.let {
             binding.title.text = it.title
         }
-        var title = shop.title
         listenclick()
     }
 
@@ -63,10 +62,39 @@ class ShopDetailsActivity: AppCompatActivity() {
     }
     private fun listenclick(){
         binding.buttonDeco.setOnClickListener{
-            val path = "$title/deco"
             Log.d("test","test1322123")
             Toast.makeText(this, "deco",  Toast.LENGTH_SHORT)
             changeActivityToDeco()
+
+        }
+        binding.buttonPDM.setOnClickListener{
+            Log.d("test","test1322123")
+            Toast.makeText(this, "deco",  Toast.LENGTH_SHORT)
+            changeActivityToPDM()
+
+        }
+        binding.buttonPA.setOnClickListener{
+            Log.d("test","test1322123")
+            Toast.makeText(this, "deco",  Toast.LENGTH_SHORT)
+            changeActivityToPA()
+
+        }
+        binding.buttonPN.setOnClickListener{
+            Log.d("test","test1322123")
+            Toast.makeText(this, "deco",  Toast.LENGTH_SHORT)
+            changeActivityToPN()
+
+        }
+        binding.buttonFL.setOnClickListener{
+            Log.d("test","test1322123")
+            Toast.makeText(this, "deco",  Toast.LENGTH_SHORT)
+            changeActivityToFL()
+
+        }
+        binding.buttonViande.setOnClickListener{
+            Log.d("test","test1322123")
+            Toast.makeText(this, "deco",  Toast.LENGTH_SHORT)
+            changeActivityToVIANDE()
 
         }
     }
