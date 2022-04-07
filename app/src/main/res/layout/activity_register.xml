@@ -14,6 +14,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="cursive"
         android:text="@string/register"
+        android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
