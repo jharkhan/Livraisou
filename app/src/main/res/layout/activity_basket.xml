@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wallpaper3"
+    android:background="@drawable/wallpaper"
     tools:context=".BasketActivity">
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_width="178dp"
         android:layout_height="59dp"
         android:layout_marginBottom="32dp"
-        android:backgroundTint="#BF360C"
+        android:backgroundTint="#890CBF"
         android:text="@string/order"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"

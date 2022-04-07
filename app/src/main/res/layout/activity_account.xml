@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wallpaper3"
+    android:background="@drawable/wallpaper"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".AccountActivity">
@@ -113,7 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:backgroundTint="#BF360C"
+        android:backgroundTint="#890CBF"
         android:text="@string/btn_update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
