@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/profilPic"
-        android:layout_width="254dp"
-        android:layout_height="224dp"
+        android:layout_width="189dp"
+        android:layout_height="185dp"
         android:layout_gravity="center"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="24dp"
@@ -19,9 +19,9 @@
         android:src="@drawable/ic_profil"
         app:layout_constraintBottom_toTopOf="@+id/edittext_lastname"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edittext_lastname"
