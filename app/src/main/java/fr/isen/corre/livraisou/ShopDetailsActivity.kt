@@ -16,11 +16,8 @@ class ShopDetailsActivity: AppCompatActivity() {
 
         val shopName = intent.getStringExtra(SHOP_EXTRA)
         val shop = shopName?.let { shopFromName(it) }
-
         shop?.let {
-            binding.cover.setImageResource(it.cover)
             binding.title.text = it.title
-            binding.description.text = it.description
         }
     }
 

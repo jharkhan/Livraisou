@@ -11,6 +11,7 @@ import com.google.firebase.database.*
 
 
 
+
 class ProductsDECOActivity : AppCompatActivity() {
     private lateinit var dbref: DatabaseReference
     private lateinit var userRecyclerview: RecyclerView
@@ -29,7 +30,6 @@ class ProductsDECOActivity : AppCompatActivity() {
         getUserData()
 
     }
-
     private fun getUserData() {
 
         dbref = FirebaseDatabase.getInstance().getReference("produits/deco")
