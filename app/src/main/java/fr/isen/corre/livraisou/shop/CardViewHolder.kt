@@ -1,4 +1,4 @@
-package fr.isen.corre.livraisou
+package fr.isen.corre.livraisou.shop
 
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.corre.livraisou.databinding.CardCellBinding

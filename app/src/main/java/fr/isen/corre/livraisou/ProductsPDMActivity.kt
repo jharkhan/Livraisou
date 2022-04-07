@@ -6,9 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
-
-
-
+import fr.isen.corre.livraisou.product.ProductAdapter
 
 
 class ProductsPDMActivity : AppCompatActivity() {
