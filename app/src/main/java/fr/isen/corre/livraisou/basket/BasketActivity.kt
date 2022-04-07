@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import fr.isen.corre.livraisou.OrderFinalActivity
+import fr.isen.corre.livraisou.R
 import fr.isen.corre.livraisou.databinding.ActivityBasketBinding
 import org.json.JSONObject
 
