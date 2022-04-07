@@ -21,7 +21,7 @@
         tools:fontFamily="cursive" />
 
     <Button
-        android:id="@+id/commander"
+        android:id="@+id/orderButton"
         android:layout_width="178dp"
         android:layout_height="59dp"
         android:layout_marginBottom="32dp"
@@ -36,7 +36,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/commander"
+        app:layout_constraintBottom_toTopOf="@+id/orderButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
