@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
@@ -25,13 +26,16 @@ class MapsFragment : Fragment() {
          */
 
         val ISEN = LatLng(43.12063, 5.93966)
-        googleMap.addMarker(MarkerOptions().position(ISEN).title("Marker in ISEN"))
+        googleMap.addMarker(MarkerOptions().position(ISEN).title("Marker in ISEN").icon(
+            BitmapDescriptorFactory.fromResource(R.drawable.arrowten)))
 
         val carrefour = LatLng(43.12004, 5.93467)
         val casino = LatLng(43.13043, 5.93851)
         val monoprix = LatLng(43.1232, 5.93352)
-        googleMap.addMarker(MarkerOptions().position(carrefour).title("Marker in carrefour"))
-        googleMap.addMarker(MarkerOptions().position(casino).title("Marker in casino"))
+        googleMap.addMarker(MarkerOptions().position(carrefour).title("Marker in carrefour").icon(
+            BitmapDescriptorFactory.fromResource(R.drawable.arrowtwo)))
+        googleMap.addMarker(MarkerOptions().position(casino).title("Marker in casino").icon(
+            BitmapDescriptorFactory.fromResource(R.drawable.arrowthree)))
         googleMap.addMarker(MarkerOptions().position(monoprix).title("Marker in monoprix"))
         val zoomLevel = 16.0f
 
